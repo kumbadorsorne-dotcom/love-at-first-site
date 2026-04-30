@@ -9,7 +9,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "revealChoreo": "grid",
   "tier": "premium",
   "stateView": "quiz",
-  "quizValidation": "on",
+  "quizValidation": "off",
   "showNav": "on",
   "userType": "new"
 }/*EDITMODE-END*/;
@@ -24,7 +24,7 @@ const TWEAK_OPTIONS = {
   quizValidation: ['on','off'],
   showNav: ['on','off'],
   userType: ['new','returning'],
-  stateView: ['login','quiz','dashboard','bio','lobby','getready','circuit','verdict','reveal'],
+  stateView: ['login','quiz','dashboard','bio','lobby','prep-notify','round','verdict','reveal','premium'],
 };
 
 const TWEAK_LABELS = {
@@ -86,12 +86,12 @@ function TweaksPanel({ tweaks, update, open, setOpen }) {
       fontFamily:'Lato, sans-serif', color:'var(--ink)'
     }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: 14 }}>
-        <div className="caps mono" style={{ fontSize: 10, color:'var(--ink-3)' }}>Tweaks · LaFS</div>
+        <div className="caps mono" style={{ fontSize: 12, color:'var(--ink-3)' }}>Tweaks · LaFS</div>
         <button onClick={() => setOpen(false)} style={{ fontSize: 18, color:'var(--ink-3)', lineHeight:1 }}>×</button>
       </div>
       {Object.keys(TWEAK_OPTIONS).map(key => (
         <div key={key} style={{ marginBottom: 12 }}>
-          <div className="caps mono" style={{ fontSize: 9, color:'var(--ink-3)', marginBottom: 5, letterSpacing:'0.14em' }}>
+          <div className="caps mono" style={{ fontSize: 12, color:'var(--ink-3)', marginBottom: 5, letterSpacing:'0.12em' }}>
             {TWEAK_LABELS[key]}
           </div>
           <div style={{ display:'flex', flexWrap:'wrap', gap: 4 }}>
@@ -100,7 +100,7 @@ function TweaksPanel({ tweaks, update, open, setOpen }) {
               return (
                 <button key={opt} onClick={() => update(key, opt)}
                   style={{
-                    padding: '5px 9px', fontSize: 11, fontFamily:'Lato, sans-serif',
+                    padding: '5px 9px', fontSize: 12, fontFamily:'Lato, sans-serif',
                     background: active ? 'var(--ink)' : 'transparent',
                     color: active ? 'var(--paper)' : 'var(--ink-2)',
                     border: `1px solid ${active ? 'var(--ink)' : 'var(--line-strong)'}`,
@@ -113,7 +113,7 @@ function TweaksPanel({ tweaks, update, open, setOpen }) {
           </div>
         </div>
       ))}
-      <div style={{ marginTop: 14, paddingTop: 12, borderTop:'1px solid var(--line)', fontFamily:'Lato, sans-serif', fontSize: 13, color:'var(--ink-3)', fontStyle:'italic' }}>
+      <div style={{ marginTop: 14, paddingTop: 12, borderTop:'1px solid var(--line)', fontFamily:'Lato, sans-serif', fontSize: 12, color:'var(--ink-3)', fontStyle:'italic' }}>
         Toggle in the toolbar to hide.
       </div>
     </div>

@@ -80,16 +80,18 @@ const NAMES = [
   { name:'Mateo', age:31, city:'Oakland', occ:'Sound designer' },
   { name:'Priya', age:28, city:'Chicago', occ:'Pastry chef' },
   { name:'Wren', age:33, city:'Austin', occ:'Set builder' },
-  { name:'Desmond', age:30, city:'Atlanta', occ:'Civil engineer' },
   { name:'Ilse', age:27, city:'Portland', occ:'Translator' },
-  { name:'Tomás', age:32, city:'Boston', occ:'Oncologist'  },
+  { name:'Desmond', age:30, city:'Atlanta', occ:'Civil engineer' },
   { name:'Harper', age:29, city:'Denver', occ:'Arborist' },
+  { name:'Tomás', age:32, city:'Boston', occ:'Oncologist' },
   { name:'Nadia', age:34, city:'Seattle', occ:'Ceramicist' },
   { name:'Ezra', age:31, city:'LA', occ:'Screenwriter' },
+  { name:'Lena', age:28, city:'Brooklyn', occ:'Documentary editor' },
+  { name:'Soren', age:29, city:'Seattle', occ:'Architect' },
 ];
 
 function SmallCap({ children, style = {} }) {
-  return <span className="caps mono" style={{ fontSize: 10, letterSpacing:'0.16em', color:'var(--ink-3)', ...style }}>{children}</span>;
+  return <span className="caps mono" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--ink-3)', ...style }}>{children}</span>;
 }
 
 function HairRule({ style = {} }) {
@@ -103,7 +105,7 @@ function Clock({ label, tz }) {
   const t = new Date().toLocaleTimeString('en-US', { timeZone: tz, hour:'2-digit', minute:'2-digit', hour12: false });
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-start' }}>
-      <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.18em', color:'var(--ink-3)' }}>{label}</span>
+      <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--ink-3)' }}>{label}</span>
       <span className="serif" style={{ fontSize: 18, lineHeight: 1, letterSpacing:'-0.01em', marginTop: 2, fontFeatureSettings:'"tnum"' }}>{t}</span>
     </div>
   );
@@ -116,8 +118,8 @@ function Masthead({ tier }) {
         <div className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing:'-0.02em' }}>
           <span style={{ fontStyle:'italic' }}>Love</span> at First Sight
         </div>
-        <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>
-          Pod Ardor · Lobby
+        <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.12em' }}>
+          Lobby
         </div>
       </div>
       <div style={{ display:'flex', gap: 14, alignItems:'center' }}>
@@ -130,10 +132,10 @@ function Masthead({ tier }) {
           background: tier==='premium' ? '#800120' : '#FFFFFF',
           color: tier==='premium' ? '#FFFFFF' : '#800120',
           border: tier==='premium' ? 'none' : '1px solid #800120',
-          fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.14em',
-          textTransform:'uppercase', borderRadius: 2
+          fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em',
+          textTransform:'uppercase', borderRadius: 10
         }}>
-          {tier==='premium' ? "You're on Premium" : 'Upgrade to Premium'}
+          {tier==='premium' ? "You're on Premium" : "You're on Basic"}
         </div>
       </div>
     </header>
@@ -142,15 +144,15 @@ function Masthead({ tier }) {
 
 // ── Center dial ──────────────────────────────────────────────
 function FormingDial({ progress, needed, have }) {
-  const size = 380;
+  const size = 480;
   const cx = size/2, cy = size/2;
-  const R = 160;
+  const R = 200;
   const dash = 2*Math.PI*R;
   const pct = progress;
-  const seats = 9;
-  const seatR = 22;
+  const seats = 12;
+  const seatR = 18;
   // Match seeds to the manifest: position i uses seed i+3
-  const seeds = [3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const seeds = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   return (
     <div style={{ position:'relative', width: size, height: size, margin:'0 auto' }}>
       <svg width={size} height={size} style={{ position:'absolute', inset:0 }}>
@@ -206,7 +208,7 @@ function FormingDial({ progress, needed, have }) {
           }}>
             {you ? (
               <div style={{ width:'100%', height:'100%', display:'flex', alignItems:'center', justifyContent:'center' }}>
-                <span className="mono caps" style={{ fontSize: 9, color:'var(--paper)', letterSpacing:'0.1em' }}>YOU</span>
+                <span className="mono caps" style={{ fontSize: 12, color:'var(--paper)', letterSpacing:'0.12em' }}>YOU</span>
               </div>
             ) : (
               <div style={{ position:'absolute', inset: -6, filter:'blur(4px) saturate(1.1)' }}>
@@ -221,7 +223,7 @@ function FormingDial({ progress, needed, have }) {
       <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', textAlign:'center', padding:'0 24px' }}>
         {have >= needed ? (
           <>
-            <div className="mono caps" style={{ fontSize: 8, color:'var(--rust)', letterSpacing:'0.18em' }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>
               <span style={{ display:'inline-block', width: 5, height: 5, borderRadius: 99, background:'var(--rust)', marginRight: 5, animation:'pulse 0.8s infinite', verticalAlign:'middle' }}/>
               Pod complete
             </div>
@@ -242,15 +244,15 @@ function FormingDial({ progress, needed, have }) {
 // ── Left column: pledge + filter report ─────────────────────
 function PledgeCard() {
   return (
-    <div style={{ border:'1px solid var(--line-strong)', padding:'18px 20px', background:'var(--cream)', borderRadius: 2 }}>
+    <div style={{ border:'1px solid var(--line-strong)', padding:'18px 20px', background:'var(--cream)', borderRadius: 10 }}>
       <SmallCap>
 </SmallCap>
-      <div className="serif" style={{ fontSize: 22, lineHeight: 1.15, marginTop: 10, fontStyle:'italic' }}>
+      <div className="serif" style={{ fontSize: 24, lineHeight: 1.1, marginTop: 10, fontStyle:'italic' }}>
         
 
       </div>
       <div style={{ marginTop: 14, display:'flex', alignItems:'center', gap: 10 }}>
-        <div style={{ fontFamily:'Lato, sans-serif', fontStyle:'italic', fontSize: 26, borderBottom:'1px solid var(--ink)', paddingBottom: 2, paddingRight: 20 }}>
+        <div style={{ fontFamily:'Lato, sans-serif', fontStyle:'italic', fontSize: 24, borderBottom:'1px solid var(--ink)', paddingBottom: 2, paddingRight: 20 }}>
           
 
         </div>
@@ -274,14 +276,14 @@ function FilterLedger({ tier }) {
     { label: 'Politics',     choice: 'Left' },
   ];
   return (
-    <div style={{ padding:'18px 20px', border:'1px solid var(--line-strong)', borderRadius: 2 }}>
+    <div style={{ padding:'18px 20px', border:'1px solid var(--line-strong)', borderRadius: 10 }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 6 }}>
         <SmallCap>Your filters</SmallCap>
         <SmallCap style={{ color: tier === 'premium' ? 'var(--rust)' : 'var(--ink-3)' }}>
           {tier === 'premium' ? '◆ Premium · enforced' : '○ Free tier'}
         </SmallCap>
       </div>
-      <div className="mono" style={{ fontSize: 10, color:'var(--ink-3)', letterSpacing:'0.06em', marginBottom: 12, fontStyle:'italic' }}>
+      <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.08em', marginBottom: 12, fontStyle:'italic' }}>
         {tier === 'premium'
           ? 'Hard dealbreakers honored. Soft preferences prioritized for 10 min.'
           : "You're on the free tier — we pair you at random."}
@@ -293,24 +295,24 @@ function FilterLedger({ tier }) {
             <span style={{ color:'var(--ink)' }}>accept the universe's choices.</span>
           </div>
           <div style={{
-            marginTop: 14, padding:'10px 12px', background:'var(--ink)', color:'var(--cream)', borderRadius: 2,
+            marginTop: 14, padding:'12px 20px', background:'var(--ink)', color:'var(--cream)', borderRadius: 10,
             display:'flex', justifyContent:'space-between', alignItems:'center', gap: 10
           }}>
             <div>
-              <div className="mono caps" style={{ fontSize: 9, color:'#FFFFFFB0', letterSpacing:'0.14em' }}>Next time</div>
-              <div className="serif" style={{ fontSize: 15, lineHeight: 1.2, marginTop: 2 }}>
+              <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFFB0', letterSpacing:'0.12em' }}>Next time</div>
+              <div className="serif" style={{ fontSize: 18, lineHeight: 1.1, marginTop: 2 }}>
                 Upgrade to Premium for a <span style={{ fontStyle:'italic', color:'var(--rust)' }}>pod that matches your dealbreakers.</span>
               </div>
             </div>
-            <button style={{ flexShrink: 0, padding:'7px 12px', background:'var(--rust)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 10, letterSpacing:'0.14em', textTransform:'uppercase', borderRadius: 2 }}>$20/mo →</button>
+            <button style={{ flexShrink: 0, padding:'6px 12px', background:'var(--rust)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', borderRadius: 10 }}>$20/mo →</button>
           </div>
         </>
       ) : (
         <div style={{ display:'flex', flexDirection:'column', gap: 0 }}>
           {filters.map((f,i) => (
             <div key={i} style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', padding:'7px 0', borderBottom: i===filters.length-1 ? 'none' : '1px dotted var(--line-strong)' }}>
-              <span className="serif" style={{ fontSize: 15 }}>{f.label}</span>
-              <span className="mono" style={{ fontSize: 11, color:'var(--ink-2)' }}>{f.choice}</span>
+              <span className="serif" style={{ fontSize: 18 }}>{f.label}</span>
+              <span className="mono" style={{ fontSize: 12, color:'var(--ink-2)' }}>{f.choice}</span>
             </div>
           ))}
         </div>
@@ -321,11 +323,11 @@ function FilterLedger({ tier }) {
 
 function MetHistoryCard() {
   return (
-    <div style={{ padding:'16px 20px', background:'var(--paper-2)', borderRadius: 2 }}>
+    <div style={{ padding:'16px 20px', background:'var(--paper-2)', borderRadius: 10 }}>
       <SmallCap>06 · Met History Filter</SmallCap>
       <div style={{ display:'flex', alignItems:'baseline', gap: 10, marginTop: 8 }}>
-        <div className="serif" style={{ fontSize: 44, lineHeight: 1 }}>47</div>
-        <div className="mono" style={{ fontSize: 11, color:'var(--ink-2)', lineHeight: 1.4 }}>
+        <div className="serif" style={{ fontSize: 48, lineHeight: 1 }}>47</div>
+        <div className="mono" style={{ fontSize: 12, color:'var(--ink-2)', lineHeight: 1.3 }}>
           people excluded from this<br/>pod. You've seen them before.
         </div>
       </div>
@@ -341,19 +343,19 @@ function PreflightCard() {
     { label: 'Microphone', value: 'Quiet room', ok: true },
   ];
   return (
-    <div style={{ padding:'16px 20px', border:'1px solid var(--line-strong)', borderRadius: 2, background:'var(--cream)' }}>
+    <div style={{ padding:'16px 20px', border:'1px solid var(--line-strong)', borderRadius: 10, background:'var(--cream)' }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 10 }}>
-        <SmallCap>11 · Set-Up Checklist</SmallCap>
+        <SmallCap>11 · Checklist</SmallCap>
         <SmallCap style={{ color:'var(--rust)' }}>One thing to fix</SmallCap>
       </div>
-      <div className="serif" style={{ fontSize: 18, fontStyle:'italic', lineHeight: 1.25, color:'var(--ink-2)', marginBottom: 10 }}>
+      <div className="serif" style={{ fontSize: 18, fontStyle:'italic', lineHeight: 1.15, color:'var(--ink-2)', marginBottom: 10 }}>
         Forty minutes is a long time to hold a video call. Charge your laptop, confirm your wifi, and go.
       </div>
       <div style={{ display:'flex', flexDirection:'column', gap: 4 }}>
         {items.map((it, i) => (
           <div key={i} style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'5px 0', borderBottom: i===items.length-1 ? 'none' : '1px dotted var(--line-strong)' }}>
             <span className="mono" style={{ fontSize: 12 }}>{it.label}</span>
-            <span className="mono caps" style={{ fontSize: 9, letterSpacing:'0.14em', color: it.ok ? 'var(--ink-3)' : 'var(--rust)' }}>
+            <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em', color: it.ok ? 'var(--ink-3)' : 'var(--rust)' }}>
               {it.ok ? '✓ ' : '! '}{it.value}
             </span>
           </div>
@@ -378,7 +380,7 @@ function IntakeManifest({ candidates }) {
     lastJoinedRef.current = joinedCount;
   }, [joinedCount]);
   return (
-    <div style={{ padding:'14px 18px', border:'1px solid #FFFFFF20', borderRadius: 2, background:'#0A0A0A', color:'#FFFFFF', height:'100%', display:'flex', flexDirection:'column', minHeight: 0 }}>
+    <div style={{ padding:'12px 20px', border:'1px solid #FFFFFF20', borderRadius: 10, background:'#0A0A0A', color:'#FFFFFF', height:'100%', display:'flex', flexDirection:'column', minHeight: 0 }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 10 }}>
         <SmallCap>02 · Pod Manifest</SmallCap>
         <SmallCap style={{ color:'#FFFFFF' }}>In progress</SmallCap>
@@ -391,7 +393,7 @@ function IntakeManifest({ candidates }) {
             opacity: c.joined ? 1 : 0.55,
             flexShrink: 0
           }}>
-            <span className="mono" style={{ fontSize: 10, color:'var(--ink-3)' }}>{String(i+1).padStart(2,'0')}</span>
+            <span className="mono" style={{ fontSize: 12, color:'var(--ink-3)' }}>{String(i+1).padStart(2,'0')}</span>
             <div style={{ width: 36, height: 36, overflow:'hidden', borderRadius: 99, border:'1px solid var(--line-strong)', position:'relative' }}>
               {c.joined ? (
                 <div style={{ position:'absolute', inset: -4, filter:'blur(7px) saturate(1.05)' }}>
@@ -400,14 +402,14 @@ function IntakeManifest({ candidates }) {
               ) : <div style={{ width:'100%', height:'100%', background:'var(--paper-3)', backgroundImage:'repeating-linear-gradient(45deg, transparent 0 4px, var(--line) 4px 5px)' }}/>}
             </div>
             <div style={{ display:'flex', flexDirection:'column' }}>
-              <span className="serif" style={{ fontSize: 16, lineHeight: 1.1 }}>
-                {c.joined ? <>{c.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 13 }}> · {c.age}</span></> : <span style={{ fontStyle:'italic', color:'var(--ink-3)' }}>Searching…</span>}
+              <span className="serif" style={{ fontSize: 18, lineHeight: 1.1 }}>
+                {c.joined ? <>{c.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 12 }}> · {c.age}</span></> : <span style={{ fontStyle:'italic', color:'var(--ink-3)' }}>Searching…</span>}
               </span>
-              <span className="mono" style={{ fontSize: 10, color:'var(--ink-3)', marginTop: 2 }}>
+              <span className="mono" style={{ fontSize: 12, color:'var(--ink-3)', marginTop: 2 }}>
                 {c.joined ? `${c.occ} · ${c.city}` : 'candidate #' + (i+1)}
               </span>
             </div>
-            <span className="mono caps" style={{ fontSize: 9, color: c.joined ? 'var(--rust)' : 'var(--ink-3)', letterSpacing:'0.14em' }}>
+            <span className="mono caps" style={{ fontSize: 12, color: c.joined ? 'var(--rust)' : 'var(--ink-3)', letterSpacing:'0.12em' }}>
               {c.joined ? (c.you ? 'You' : 'Joined') : '···'}
             </span>
           </div>
@@ -433,8 +435,8 @@ function Bell({ ringing, dark }) {
     <div style={{ position:'relative', width: 56, height: 56, display:'flex', alignItems:'center', justifyContent:'center' }}>
       {ringing && (
         <>
-          <span style={{ position:'absolute', inset:-4, border:`1px solid ${accent}`, borderRadius: 2, opacity: 0.6, animation:'bellRipple 1.2s infinite' }}/>
-          <span style={{ position:'absolute', inset:-10, border:`1px solid ${accent}`, borderRadius: 2, opacity: 0.3, animation:'bellRipple 1.2s infinite 0.4s' }}/>
+          <span style={{ position:'absolute', inset:-4, border:`1px solid ${accent}`, borderRadius: 10, opacity: 0.6, animation:'bellRipple 1.2s infinite' }}/>
+          <span style={{ position:'absolute', inset:-10, border:`1px solid ${accent}`, borderRadius: 10, opacity: 0.3, animation:'bellRipple 1.2s infinite 0.4s' }}/>
         </>
       )}
       <svg viewBox="0 0 48 48" width="44" height="44" style={{ transformOrigin:'24px 10px', animation: ringing ? 'bellSwing 0.6s infinite' : 'none' }}>
@@ -458,7 +460,7 @@ function TeaserCard({ teaserBlur, nextPerson, podFull }) {
     veil: 'blur(24px) brightness(1.1)',
   };
   return (
-    <div style={{ padding:'16px 18px', background: podFull ? 'var(--ink)' : 'var(--paper-2)', color: podFull ? 'var(--cream)' : 'var(--ink)', borderRadius: 2, position:'relative', overflow:'hidden', border: podFull ? '1px solid var(--rust)' : 'none', boxShadow: podFull ? '0 0 0 3px #6B152022' : 'none', transition:'all .4s' }}>
+    <div style={{ padding:'16px 18px', background: podFull ? 'var(--ink)' : 'var(--paper-2)', color: podFull ? 'var(--cream)' : 'var(--ink)', borderRadius: 10, position:'relative', overflow:'hidden', border: podFull ? '1px solid var(--rust)' : 'none', boxShadow: podFull ? '0 0 0 3px #6B152022' : 'none', transition:'all .4s' }}>
       {podFull && (
         <div style={{ position:'absolute', top: 0, left: 0, right: 0, height: 3, background:'var(--rust)' }}/>
       )}
@@ -472,19 +474,19 @@ function TeaserCard({ teaserBlur, nextPerson, podFull }) {
             padding:'4px 9px',
             background:'transparent',
             border:`1px solid ${podFull ? '#FFFFFF40' : 'var(--line-strong)'}`,
-            borderRadius: 2,
+            borderRadius: 10,
             color: podFull ? '#FFFFFFB0' : 'var(--ink-3)',
-            fontFamily:'Lato, sans-serif', fontSize: 8, letterSpacing:'0.16em', textTransform:'uppercase'
+            fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.16em', textTransform:'uppercase'
           }}>
           ♪ Hear the bell
         </button>
       </div>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
         <SmallCap style={{ color: podFull ? '#FFFFFFB0' : 'var(--ink-3)' }}>09 · {podFull ? 'Your First Date →' : 'Next Up (Preview)'}</SmallCap>
-        {podFull && <SmallCap style={{ color:'var(--rust)' }}><span style={{ display:'inline-block', width: 5, height: 5, borderRadius: 99, background:'var(--rust)', marginRight: 5, animation:'pulse 0.8s infinite', verticalAlign:'middle' }}/>Call 1 of 8</SmallCap>}
+        {podFull && <SmallCap style={{ color:'var(--rust)' }}><span style={{ display:'inline-block', width: 5, height: 5, borderRadius: 99, background:'var(--rust)', marginRight: 5, animation:'pulse 0.8s infinite', verticalAlign:'middle' }}/>Date 1 of 6</SmallCap>}
       </div>
       <div style={{ display:'grid', gridTemplateColumns:'90px 1fr', gap: 14, marginTop: 10, alignItems:'center' }}>
-        <div style={{ width: 90, height: 100, position:'relative', borderRadius: 2, overflow:'hidden', border:'1px solid var(--line-strong)' }}>
+        <div style={{ width: 90, height: 100, position:'relative', borderRadius: 10, overflow:'hidden', border:'1px solid var(--line-strong)' }}>
           {teaserBlur === 'mosaic' ? (
             <div style={{ position:'absolute', inset:0, display:'grid', gridTemplateColumns:'repeat(10, 1fr)', gridTemplateRows:'repeat(11, 1fr)', filter: podFull ? 'none' : 'blur(0)' }}>
               {[...Array(110)].map((_,i) => {
@@ -502,20 +504,20 @@ function TeaserCard({ teaserBlur, nextPerson, podFull }) {
           )}
         </div>
         <div>
-          <div className="serif" style={{ fontSize: 26, lineHeight: 1, letterSpacing:'-0.01em', color: podFull ? 'var(--cream)' : 'var(--ink)' }}>
-            {nextPerson.name}<span style={{ color: podFull ? '#FFFFFFB0' : 'var(--ink-3)', fontStyle:'italic', fontSize: 20 }}>, {nextPerson.age}</span>
+          <div className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing:'-0.01em', color: podFull ? 'var(--cream)' : 'var(--ink)' }}>
+            {nextPerson.name}<span style={{ color: podFull ? '#FFFFFFB0' : 'var(--ink-3)', fontStyle:'italic', fontSize: 24 }}>, {nextPerson.age}</span>
           </div>
-          <div className="mono" style={{ fontSize: 11, color: podFull ? '#FFFFFFB0' : 'var(--ink-2)', marginTop: 6, lineHeight: 1.4 }}>
+          <div className="mono" style={{ fontSize: 12, color: podFull ? '#FFFFFFB0' : 'var(--ink-2)', marginTop: 6, lineHeight: 1.3 }}>
             {nextPerson.occ}<br/>{nextPerson.city}
           </div>
           <div style={{ marginTop: 10, display:'flex', gap: 5, flexWrap:'wrap' }}>
             {['Non-smoker','Wants kids','Libra'].map(t => (
-              <span key={t} className="mono" style={{ fontSize: 9, padding:'2px 7px', border:`1px solid ${podFull ? '#FFFFFF40' : 'var(--line-strong)'}`, borderRadius: 2, color: podFull ? '#FFFFFFB0' : 'var(--ink-2)' }}>{t}</span>
+              <span key={t} className="mono" style={{ fontSize: 12, padding:'2px 7px', border:`1px solid ${podFull ? '#FFFFFF40' : 'var(--line-strong)'}`, borderRadius: 10, color: podFull ? '#FFFFFFB0' : 'var(--ink-2)' }}>{t}</span>
             ))}
           </div>
         </div>
       </div>
-      <div className="mono" style={{ fontSize: 10, color: podFull ? 'var(--rust)' : 'var(--ink-3)', marginTop: 12, fontStyle:'italic' }}>
+      <div className="mono" style={{ fontSize: 12, color: podFull ? 'var(--rust)' : 'var(--ink-3)', marginTop: 12, fontStyle:'italic' }}>
         {podFull ? 'The face reveals at the bell. Sit up straight.' : 'The face unblurs at the bell.'}
       </div>
     </div>
@@ -554,7 +556,7 @@ function LockedInFuzzyCard({ tier, podFull }) {
   if (podFull) {
     return (
       <div style={{
-        padding:'18px 22px', border:'1px solid var(--ink)', borderRadius: 2,
+        padding:'18px 22px', border:'1px solid var(--ink)', borderRadius: 10,
         background:'var(--ink)', color:'var(--cream)', position:'relative', overflow:'hidden',
         boxShadow:'0 0 0 3px #6B152022', transition:'all .5s'
       }}>
@@ -562,21 +564,21 @@ function LockedInFuzzyCard({ tier, podFull }) {
         <div style={{ display:'grid', gridTemplateColumns:'auto 1fr auto', gap: 22, alignItems:'center' }}>
           <div style={{ display:'flex', alignItems:'center', gap: 12 }}>
             <div style={{ width: 9, height: 9, borderRadius: 99, background:'var(--rust)', animation:'pulse 0.8s infinite', boxShadow:'0 0 0 4px #6B152030' }}/>
-            <div className="mono caps" style={{ fontSize: 10, color:'var(--rust)', letterSpacing:'0.18em' }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>
               Locked in
             </div>
           </div>
           <div style={{ paddingLeft: 22, borderLeft:'1px dotted #FFFFFF30' }}>
-            <div className="serif" style={{ fontSize: 44, lineHeight: 1, letterSpacing:'-0.02em', fontFeatureSettings:'"tnum"', color:'var(--rust)' }}>
+            <div className="serif" style={{ fontSize: 48, lineHeight: 1, letterSpacing:'-0.02em', fontFeatureSettings:'"tnum"', color:'var(--rust)' }}>
               {String(mm).padStart(2,'0')}<span style={{ color:'#FFFFFF' }}>:</span>{String(ss).padStart(2,'0')}
             </div>
-            <div className="mono" style={{ fontSize: 10, color:'#FFFFFFB0', letterSpacing:'0.1em', lineHeight: 1.3, marginTop: 6 }}>
+            <div className="mono" style={{ fontSize: 12, color:'#FFFFFFB0', letterSpacing:'0.12em', lineHeight: 1.3, marginTop: 6 }}>
               of 10:00 minutes until your first chat
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'flex-end', gap: 8 }}>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap: 4 }}>
-              <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.14em', padding:'4px 8px', border:'1px solid #FFFFFF40', borderRadius: 2, color:'#FFFFFFB0' }}>Wi-Fi ✓</span>
+              <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em', padding:'4px 8px', border:'1px solid #FFFFFF40', borderRadius: 10, color:'#FFFFFFB0' }}>Wi-Fi ✓</span>
             </div>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap: 4 }}>
               <svg width="14" height="12" viewBox="0 0 24 22" fill="none" aria-hidden>
@@ -584,10 +586,10 @@ function LockedInFuzzyCard({ tier, podFull }) {
                 <rect x="11" y="8" width="2" height="6" fill="var(--rust)"/>
                 <rect x="11" y="16" width="2" height="2" fill="var(--rust)"/>
               </svg>
-              <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.14em', padding:'4px 8px', border:'1px solid var(--rust)', borderRadius: 2, color:'var(--rust)', background:'#6B152020' }}>Mic ⚠</span>
+              <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em', padding:'4px 8px', border:'1px solid var(--rust)', borderRadius: 10, color:'var(--rust)', background:'#6B152020' }}>Mic ⚠</span>
             </div>
             <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap: 4 }}>
-              <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.14em', padding:'4px 8px', border:'1px solid #FFFFFF40', borderRadius: 2, color:'#FFFFFFB0' }}>Cam ✓</span>
+              <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em', padding:'4px 8px', border:'1px solid #FFFFFF40', borderRadius: 10, color:'#FFFFFFB0' }}>Cam ✓</span>
             </div>
           </div>
         </div>
@@ -615,10 +617,10 @@ function LockedInFuzzyCard({ tier, podFull }) {
           </svg>
         )}
         <span className="mono caps" style={{
-          fontSize: 8, letterSpacing:'0.14em',
+          fontSize: 12, letterSpacing:'0.12em',
           padding:'4px 8px',
           border: `1px solid ${warn ? 'var(--rust)' : 'var(--line-strong)'}`,
-          borderRadius: 2,
+          borderRadius: 10,
           color: warn ? 'var(--rust)' : 'var(--ink-3)',
           background: warn ? '#6B152010' : 'transparent'
         }}>
@@ -627,17 +629,17 @@ function LockedInFuzzyCard({ tier, podFull }) {
         {open && (title || body) && (
           <div role="tooltip" style={{
             position:'absolute', bottom:'calc(100% + 8px)', left:'50%', transform:'translateX(-50%)',
-            width: 200, padding:'10px 12px',
+            width: 200, padding:'12px 20px',
             background:'var(--ink)', color:'var(--cream)',
-            border:'1px solid var(--ink)', borderRadius: 2,
+            border:'1px solid var(--ink)', borderRadius: 10,
             boxShadow:'0 10px 24px -12px #00000080',
             zIndex: 60, pointerEvents: cta ? 'auto' : 'none',
             textAlign:'left'
           }}>
-            <div className="mono caps" style={{ fontSize: 9, color: warn ? 'var(--rust)' : '#FFFFFFB0', letterSpacing:'0.16em', marginBottom: 4 }}>
+            <div className="mono caps" style={{ fontSize: 12, color: warn ? 'var(--rust)' : '#FFFFFFB0', letterSpacing:'0.16em', marginBottom: 4 }}>
               {title}
             </div>
-            <div className="serif" style={{ fontSize: 13, fontStyle:'italic', lineHeight: 1.3 }}>
+            <div className="serif" style={{ fontSize: 12, fontStyle:'italic', lineHeight: 1.3 }}>
               {body}
             </div>
             {cta && (
@@ -645,10 +647,10 @@ function LockedInFuzzyCard({ tier, podFull }) {
                 onClick={(e) => e.stopPropagation()}
                 className="mono caps"
                 style={{
-                  marginTop: 8, padding:'6px 10px',
-                  fontSize: 9, letterSpacing:'0.16em',
+                  marginTop: 8, padding:'6px 12px',
+                  fontSize: 12, letterSpacing:'0.16em',
                   background:'var(--rust)', color:'var(--cream)',
-                  border:'1px solid var(--rust)', borderRadius: 2, cursor:'pointer'
+                  border:'1px solid var(--rust)', borderRadius: 10, cursor:'pointer'
                 }}
               >
                 {cta} →
@@ -668,13 +670,13 @@ function LockedInFuzzyCard({ tier, podFull }) {
   };
 
   return (
-    <div style={{ padding:'14px 18px', border:'1px solid var(--ink)', borderRadius: 2, background:'var(--cream)', transition:'all .5s' }}>
+    <div style={{ padding:'12px 20px', border:'1px solid var(--ink)', borderRadius: 10, background:'var(--cream)', transition:'all .5s' }}>
       <div style={{ display:'grid', gridTemplateColumns:'1fr auto', gap: 20, alignItems:'center' }}>
         <div>
-          <div className="serif" style={{ fontSize: 38, lineHeight: 1, letterSpacing:'-0.02em', fontFeatureSettings:'"tnum"', color:'var(--ink)' }}>
+          <div className="serif" style={{ fontSize: 48, lineHeight: 1, letterSpacing:'-0.02em', fontFeatureSettings:'"tnum"', color:'var(--ink)' }}>
             {String(mm).padStart(2,'0')}<span style={{ color:'var(--rust)' }}>:</span>{String(ss).padStart(2,'0')}
           </div>
-          <div className="mono" style={{ fontSize: 10, color:'var(--ink-3)', letterSpacing:'0.1em', lineHeight: 1.3, marginTop: 6 }}>
+          <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.12em', lineHeight: 1.3, marginTop: 6 }}>
             of 10:00 minutes until your first chat
           </div>
         </div>
@@ -703,7 +705,7 @@ function FuzzyMatchCard({ tier }) {
   const isPremium = tier === 'premium';
 
   return (
-    <div style={{ padding:'12px 16px', border:'1px solid var(--line-strong)', borderRadius: 2, background:'var(--cream)' }}>
+    <div style={{ padding:'12px 16px', border:'1px solid var(--line-strong)', borderRadius: 10, background:'var(--cream)' }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
         <SmallCap>04 · Fuzzy-match window</SmallCap>
         <SmallCap style={{ color:'var(--rust)' }}>
@@ -714,19 +716,19 @@ function FuzzyMatchCard({ tier }) {
 
       {/* Compact countdown row */}
       <div style={{ display:'flex', alignItems:'baseline', gap: 10, marginTop: 4 }}>
-        <div className="serif" style={{ fontSize: 38, lineHeight: 1, letterSpacing:'-0.02em', fontFeatureSettings:'"tnum"', color: expired ? 'var(--ink-3)' : 'var(--ink)' }}>
+        <div className="serif" style={{ fontSize: 48, lineHeight: 1, letterSpacing:'-0.02em', fontFeatureSettings:'"tnum"', color: expired ? 'var(--ink-3)' : 'var(--ink)' }}>
           {String(mm).padStart(2,'0')}<span style={{ color:'var(--rust)' }}>:</span>{String(ss).padStart(2,'0')}
         </div>
-        <div className="mono" style={{ fontSize: 10, color:'var(--ink-3)', letterSpacing:'0.12em', lineHeight: 1.3 }}>
+        <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.12em', lineHeight: 1.3 }}>
           of 10:00 to perfect pod
         </div>
       </div>
 
       {/* Progress bar */}
-      <div style={{ marginTop: 8, height: 3, background:'var(--paper-3)', borderRadius: 2, overflow:'hidden', position:'relative' }}>
+      <div style={{ marginTop: 8, height: 3, background:'var(--paper-3)', borderRadius: 10, overflow:'hidden', position:'relative' }}>
         <div style={{ width: `${pct*100}%`, height:'100%', background:'var(--rust)', transition:'width 1s linear' }}/>
       </div>
-      <div className="mono" style={{ display:'flex', justifyContent:'space-between', fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.12em', marginTop: 3 }}>
+      <div className="mono" style={{ display:'flex', justifyContent:'space-between', fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.12em', marginTop: 3 }}>
         <span>00:00 · initial scan</span><span>10:00 · fallback</span>
       </div>
     </div>
@@ -736,12 +738,12 @@ function FuzzyMatchCard({ tier }) {
 function Phase({ active, n, label, body, done, last }) {
   return (
     <div style={{ display:'grid', gridTemplateColumns:'26px 1fr auto', alignItems:'flex-start', gap: 10, padding:'8px 0', borderBottom: last ? 'none' : '1px dotted var(--line-strong)' }}>
-      <span className="mono" style={{ fontSize: 10, color: active ? 'var(--rust)' : 'var(--ink-3)', letterSpacing:'0.14em' }}>{n}</span>
+      <span className="mono" style={{ fontSize: 12, color: active ? 'var(--rust)' : 'var(--ink-3)', letterSpacing:'0.12em' }}>{n}</span>
       <div>
-        <div className="serif" style={{ fontSize: 14, lineHeight: 1.2, color: active ? 'var(--ink)' : 'var(--ink-3)' }}>{label}</div>
-        <div className="mono" style={{ fontSize: 10, color:'var(--ink-3)', marginTop: 2, lineHeight: 1.45 }}>{body}</div>
+        <div className="serif" style={{ fontSize: 14, lineHeight: 1.1, color: active ? 'var(--ink)' : 'var(--ink-3)' }}>{label}</div>
+        <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', marginTop: 2, lineHeight: 1.35 }}>{body}</div>
       </div>
-      <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.14em', color: done ? 'var(--ink-3)' : active ? 'var(--rust)' : 'var(--ink-3)', marginTop: 3 }}>
+      <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em', color: done ? 'var(--ink-3)' : active ? 'var(--rust)' : 'var(--ink-3)', marginTop: 3 }}>
         {done ? '✓ done' : active ? '● live' : '○ waiting'}
       </span>
     </div>
@@ -763,73 +765,80 @@ function ManifestRotationCard({ candidates }) {
   }, [joinedCount]);
 
   return (
-    <div style={{ padding:'14px 18px', border:'1px solid #FFFFFF20', borderRadius: 2, background:'#0A0A0A', color:'#FFFFFF', height:'100%', display:'flex', flexDirection:'column', minHeight: 0 }}>
+    <div style={{ padding:'12px 20px', border:'1px solid #FFFFFF20', borderRadius: 10, background:'#0A0A0A', color:'#FFFFFF', height:'100%', display:'flex', flexDirection:'column', minHeight: 0 }}>
       {candidates && (
         <>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 8 }}>
-            <SmallCap>{joinedCount} / 9 joined</SmallCap>
+            <SmallCap>{joinedCount} / 12 joined</SmallCap>
             <SmallCap style={{ color:'#FFFFFF' }}>In progress</SmallCap>
           </div>
-          <div ref={scrollRef} style={{ display:'flex', flexDirection:'column', gap: 0, flex: 1, minHeight: 0, overflowY:'auto', scrollbarWidth:'thin' }}>
-            {candidates.map((c, i) => {
-              const callNum = i === 0 ? null : i;
-              return (
-                <React.Fragment key={i}>
-                  {/* Call number + verdict label */}
-                  {i > 0 && (
-                    <>
-                      <div style={{ padding:'3px 6px', display:'flex', alignItems:'center', gap: 8 }}>
-                        <span className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.14em' }}>{'\u25a0'} Call {i} {'\u00b7'} 5:00 minutes</span>
-                        <div style={{ flex: 1, height: 1, background:'var(--line-strong)' }}/>
-                      </div>
-                    </>
-                  )}
-                  {/* Person row */}
-                  <div data-person-row style={{
-                    display:'grid', gridTemplateColumns:'28px 36px 1fr auto', alignItems:'center', gap: 10,
-                    padding:'6px 0',
-                    opacity: c.joined ? 1 : 0.55, flexShrink: 0
+          <div ref={scrollRef} style={{ display:'flex', flexDirection:'column', gap: 6, flex: 1, minHeight: 0, overflowY:'auto', scrollbarWidth:'thin' }}>
+            {(() => {
+              const pairs = [];
+              for (let i = 0; i < candidates.length; i += 2) {
+                pairs.push([candidates[i], candidates[i+1] || null]);
+              }
+              return pairs.map((pair, pi) => {
+                const [a, b] = pair;
+                const bothJoined = a?.joined && b?.joined;
+                const eitherJoined = a?.joined || b?.joined;
+                return (
+                  <div key={pi} style={{
+                    padding:'10px 12px', borderRadius: 10,
+                    background: a?.you ? '#80012018' : '#0A0A0A',
+                    border: bothJoined ? '1px solid #FFFFFF20' : '1px solid #FFFFFF0A',
+                    opacity: eitherJoined ? 1 : 0.5
                   }}>
-                    <span className="mono" style={{ fontSize: 10, color:'#FFFFFF' }}>{String(i+1).padStart(2,'0')}</span>
-                    <div style={{ width: 36, height: 36, overflow:'hidden', borderRadius: 99, border:'1px solid #FFFFFF20', position:'relative' }}>
-                      {c.joined ? (
-                        <div style={{ position:'absolute', inset: -4, filter:'blur(7px) saturate(1.05)' }}>
-                          <Silhouette seed={i+3}/>
+                    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: 8 }}>
+                      <span className="mono caps" style={{ fontSize: 12, color: a?.you ? '#800120' : '#FFFFFF', letterSpacing:'0.12em', fontWeight: 700 }}>Date {pi + 1}</span>
+                      <span className="mono caps" style={{ fontSize: 12, color: bothJoined ? '#800120' : '#888888', letterSpacing:'0.12em' }}>
+                        {bothJoined ? '\u2665 Ready' : '5:00 min'}
+                      </span>
+                    </div>
+                    <div style={{ display:'flex', alignItems:'center', gap: 12 }}>
+                      {/* Person A */}
+                      <div style={{ display:'flex', alignItems:'center', gap: 8, flex: 1 }}>
+                        <div style={{ width: 32, height: 32, overflow:'hidden', borderRadius: 99, border: a?.you ? '2px solid #800120' : '1px solid #FFFFFF20', position:'relative', flexShrink: 0 }}>
+                          {a?.joined ? (
+                            <div style={{ position:'absolute', inset: -4, filter: a?.you ? 'none' : 'blur(7px) saturate(1.05)' }}>
+                              <Silhouette seed={a?.you ? 1 : pi*2+3}/>
+                            </div>
+                          ) : <div style={{ width:'100%', height:'100%', background:'#1A1A1A' }}/>}
                         </div>
-                      ) : <div style={{ width:'100%', height:'100%', background:'#1A1A1A', backgroundImage:'repeating-linear-gradient(45deg, transparent 0 4px, #FFFFFF10 4px 5px)' }}/>}
+                        <div>
+                          <div className="serif" style={{ fontSize: 14, lineHeight: 1, color:'#FFFFFF' }}>
+                            {a?.you ? 'You' : a?.joined ? a.name : '...'}
+                          </div>
+                          {a?.joined && !a?.you && <div className="mono" style={{ fontSize: 12, color:'#888888', marginTop: 1 }}>{a.city}</div>}
+                        </div>
+                      </div>
+
+                      <div className="mono caps" style={{ fontSize: 24, color:'#800120', letterSpacing:'0.08em' }}>&amp;</div>
+
+                      {/* Person B */}
+                      <div style={{ display:'flex', alignItems:'center', gap: 8, flex: 1, justifyContent:'flex-end' }}>
+                        <div style={{ textAlign:'right' }}>
+                          <div className="serif" style={{ fontSize: 14, lineHeight: 1, color:'#FFFFFF' }}>
+                            {b?.joined ? b.name : '...'}
+                          </div>
+                          {b?.joined && <div className="mono" style={{ fontSize: 12, color:'#888888', marginTop: 1 }}>{b.city}</div>}
+                        </div>
+                        <div style={{ width: 32, height: 32, overflow:'hidden', borderRadius: 99, border:'1px solid #FFFFFF20', position:'relative', flexShrink: 0 }}>
+                          {b?.joined ? (
+                            <div style={{ position:'absolute', inset: -4, filter:'blur(7px) saturate(1.05)' }}>
+                              <Silhouette seed={pi*2+4}/>
+                            </div>
+                          ) : <div style={{ width:'100%', height:'100%', background:'#1A1A1A' }}/>}
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ display:'flex', flexDirection:'column' }}>
-                      <span className="serif" style={{ fontSize: 15, lineHeight: 1.1, color:'#FFFFFF' }}>
-                        {c.joined ? <>{c.name}<span style={{ color:'#888888', fontStyle:'italic', fontSize: 12 }}> {'\u00b7'} {c.age}</span></> : <span style={{ fontStyle:'italic', color:'#888888' }}>Searching...</span>}
-                      </span>
-                      <span className="mono" style={{ fontSize: 9, color: c.joined ? '#FFFFFF' : '#888888', marginTop: 2 }}>
-                        {c.joined ? `${c.occ} \u00b7 ${c.city}` : 'candidate #' + (i+1)}
-                      </span>
-                    </div>
-                    <span className="mono caps" style={{ fontSize: 9, color: c.joined ? '#FFFFFF' : '#888888', letterSpacing:'0.14em' }}>
-                      {c.joined ? (c.you ? 'You' : 'Joined') : '\u00b7\u00b7\u00b7'}
-                    </span>
                   </div>
-                  {/* Break after call 4 */}
-                  {i === 4 && (
-                    <div style={{ padding:'4px 6px', margin:'2px 0', background:'#1A1A1A', borderRadius: 2, display:'flex', alignItems:'center', gap: 8 }}>
-                      <span className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.14em' }}>{'\u25ce'} Refresh break {'\u00b7'} 3:00 minutes</span>
-                    </div>
-                  )}
-                </React.Fragment>
-              );
-            })}
-            {/* Call 8 label */}
-            <div style={{ padding:'2px 6px', display:'flex', alignItems:'center', gap: 6 }}>
-              <span className="mono caps" style={{ fontSize: 7, color:'var(--ink-3)', letterSpacing:'0.12em' }}>{'\u00b7'} Verdict {'\u00b7'} 2:00 minutes</span>
-            </div>
-            <div style={{ padding:'3px 6px', display:'flex', alignItems:'center', gap: 8 }}>
-              <span className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.14em' }}>{'\u25a0'} Call 8 {'\u00b7'} 5:00 minutes</span>
-              <div style={{ flex: 1, height: 1, background:'var(--line-strong)' }}/>
-            </div>
+                );
+              });
+            })()}
             {/* Reveal */}
-            <div style={{ padding:'4px 6px', margin:'2px 0', background:'#1A1A1A', borderRadius: 2, display:'flex', alignItems:'center', gap: 8 }}>
-              <span className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.14em' }}>{'\u2609'} Reveal</span>
+            <div style={{ padding:'8px 12px', background:'#1A1A1A', borderRadius: 10, display:'flex', alignItems:'center', justifyContent:'center', gap: 8 }}>
+              <span className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.12em' }}>{'\u2609'} Reveal</span>
             </div>
           </div>
         </>
@@ -861,7 +870,7 @@ function QueueMarquee() {
     <div style={{ borderTop:'1px solid var(--line-strong)', borderBottom:'1px solid var(--line-strong)', padding:'10px 0', overflow:'hidden', background:'var(--paper-2)' }}>
       <div className="marq-track">
         {loop.map((x, i) => (
-          <span key={i} className="mono caps" style={{ fontSize: 10, color:'var(--ink-2)', letterSpacing:'0.16em', display:'inline-flex', alignItems:'center', gap:14 }}>
+          <span key={i} className="mono caps" style={{ fontSize: 12, color:'var(--ink-2)', letterSpacing:'0.16em', display:'inline-flex', alignItems:'center', gap:14 }}>
             <span style={{ color:'var(--rust)' }}>✦</span> {x}
           </span>
         ))}
@@ -874,19 +883,19 @@ function QueueMarquee() {
 function BellStrip({ secondsLeft, tier, fuzzyAt }) {
   const pct = Math.min(1, Math.max(0, 1 - secondsLeft / fuzzyAt));
   return (
-    <div style={{ position:'relative', padding:'12px 36px', background:'var(--ink)', color:'var(--paper)', display:'flex', alignItems:'center', gap: 20, fontFamily:'Lato, sans-serif', fontSize: 11, letterSpacing:'0.12em' }}>
+    <div style={{ position:'relative', padding:'12px 36px', background:'var(--ink)', color:'var(--paper)', display:'flex', alignItems:'center', gap: 20, fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em' }}>
       {/* Highlighted pod name */}
-      <div style={{ display:'flex', alignItems:'center', gap: 10, padding:'6px 14px', background:'var(--rust)', borderRadius: 2 }}>
-        <span className="caps" style={{ fontSize: 9, opacity: 0.8, letterSpacing:'0.18em' }}>You're in pod</span>
-        <span className="serif" style={{ fontStyle:'italic', fontSize: 20, lineHeight: 1, color:'var(--cream)' }}>Ardor</span>
+      <div style={{ display:'flex', alignItems:'center', gap: 10, padding:'6px 12px', background:'var(--rust)', borderRadius: 10 }}>
+        <span className="caps" style={{ fontSize: 12, opacity: 0.8, letterSpacing:'0.16em' }}>You're in pod</span>
+        <span className="serif" style={{ fontStyle:'italic', fontSize: 24, lineHeight: 1, color:'var(--cream)' }}>Ardor</span>
       </div>
       <span style={{ color:'var(--paper)', opacity:.35 }}>|</span>
-      <span className="caps">Bell in <span style={{ color:'var(--rust)', fontSize: 13 }}>{fmt(secondsLeft)}</span></span>
+      <span className="caps">Bell in <span style={{ color:'var(--rust)', fontSize: 12 }}>{fmt(secondsLeft)}</span></span>
       <span style={{ color:'var(--paper)', opacity:.35 }}>|</span>
       <span className="caps" style={{ opacity:.7 }}>{tier==='premium' ? 'Premium filters armed' : 'Free tier · random pod'}</span>
       <div style={{ marginLeft:'auto', display:'flex', alignItems:'center', gap: 10 }}>
-        <span className="caps" style={{ opacity:.5, fontSize: 9 }}>Fuzzy-match window</span>
-        <div style={{ width: 120, height: 4, background:'#ffffff18', borderRadius: 2, overflow:'hidden' }}>
+        <span className="caps" style={{ opacity:.5, fontSize: 12 }}>Fuzzy-match window</span>
+        <div style={{ width: 120, height: 4, background:'#ffffff18', borderRadius: 10, overflow:'hidden' }}>
           <div style={{ width: `${80+pct*15}%`, height:'100%', background:'var(--rust)' }}/>
         </div>
       </div>
@@ -915,7 +924,7 @@ function LobbyView({ tweaks }) {
   React.useEffect(() => {
     if (fullFor >= 2) { setHave(3); setFullFor(0); }
   }, [fullFor]);
-  const podFull = have >= 9;
+  const podFull = have >= 12;
   const secondsLeft = Math.max(30, 190 - tick);
   const bellCountdown = Math.max(0, 12 - fullFor * 4);
   const [flutterHearts, setFlutterHearts] = React.useState([]);
@@ -969,7 +978,7 @@ function LobbyView({ tweaks }) {
       setCountdownSec(s => {
         if (s <= 1) {
           clearInterval(id);
-          window.__setView && window.__setView('getready');
+          window.__setView && window.__setView('prep-notify');
           return 0;
         }
         return s - 1;
@@ -979,7 +988,7 @@ function LobbyView({ tweaks }) {
   }, [showCountdown]);
 
   const candidates = React.useMemo(() => {
-    return NAMES.slice(0,9).map((n,i) => ({
+    return NAMES.slice(0,12).map((n,i) => ({
       ...n,
       joined: i < have,
       you: i === 0,
@@ -992,17 +1001,41 @@ function LobbyView({ tweaks }) {
     <div style={{ position:'relative', zIndex: 0, height:'100vh', display:'flex', flexDirection:'column', overflow:'hidden', background:'var(--ink)', color:'var(--cream)' }}>
       <Masthead tier={tweaks.tier}/>
 
-      <main style={{ flex: 1, minHeight: 0, padding:'14px 28px 18px', display:'grid', gridTemplateColumns:'340px 1fr', gap: 18, alignItems:'start', overflow:'hidden' }}>
-        {/* LEFT */}
-        <div style={{ display:'flex', flexDirection:'column', gap: 12, height:'100%', minHeight: 0 }}>
+      {/* Bell notification + pod title — same row */}
+      <div style={{ margin:'0 28px 12px', display:'flex', alignItems:'center', gap: 18 }}>
+        <div style={{ width: 340, flexShrink: 0 }}>
+          <div className="serif" style={{ fontSize: 32, lineHeight: 1, letterSpacing:'-0.02em' }}>
+            You're in pod: <span style={{ fontStyle:'italic', color:'var(--rust)' }}>Ardor</span>
+          </div>
+          <div className="mono" style={{ fontSize: 12, color:'#888888', marginTop: 6, letterSpacing:'0.08em' }}>
+            Assembling a pod of twelve people and six dates.
+          </div>
+        </div>
+        <div style={{
+          flex: 1, padding:'12px 20px', borderRadius: 10, display:'flex', alignItems:'center', gap: 14,
+          background: have >= 12 ? 'var(--rust)' : '#800120',
+          border: have >= 12 ? '1px solid var(--rust)' : '1px solid #800120',
+          transition:'all .4s'
+        }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+            stroke={have >= 12 ? 'var(--cream)' : '#FFFFFF'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            style={{ flexShrink: 0, animation: have >= 12 ? 'bellSwing 0.4s ease infinite' : 'none', transformOrigin:'top center' }}>
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+          </svg>
           <div>
-            <div className="serif" style={{ fontSize: 28, lineHeight: 1, letterSpacing:'-0.02em' }}>
-              You're in pod: <span style={{ fontStyle:'italic', color:'var(--rust)' }}>Ardor</span>
-            </div>
-            <div className="mono" style={{ fontSize: 10, color:'#888888', marginTop: 6, letterSpacing:'0.04em' }}>
-              Assembling a pod of nine strangers.
+            <div className="serif" style={{ fontSize: 18, lineHeight: 1.1, color: have >= 12 ? 'var(--cream)' : '#FFFFFF' }}>
+              {have >= 12
+                ? 'The bell has rung. Entering prep room...'
+                : "Turn your volume up! When the 12th person joins, the bell rings and you'll be moved to the prep room."}
             </div>
           </div>
+        </div>
+      </div>
+
+      <main style={{ flex: 1, minHeight: 0, padding:'0 28px 18px', display:'grid', gridTemplateColumns:'340px 1fr', gap: 18, alignItems:'start', overflow:'hidden' }}>
+        {/* LEFT */}
+        <div style={{ display:'flex', flexDirection:'column', height:'100%', minHeight: 0 }}>
           <div style={{ flex: 1, minHeight: 0, overflow:'hidden' }}>
             <ManifestRotationCard candidates={candidates}/>
           </div>
@@ -1010,46 +1043,24 @@ function LobbyView({ tweaks }) {
 
         {/* CENTER */}
         <div style={{ display:'flex', flexDirection:'column', alignItems:'stretch', gap: 12, height:'100%', minHeight: 0 }}>
-          {/* Bell notification */}
-          <div style={{
-            padding:'14px 18px', borderRadius: 2, display:'flex', alignItems:'center', gap: 14,
-            background: have >= 9 ? 'var(--rust)' : '#800120',
-            border: have >= 9 ? '1px solid var(--rust)' : '1px solid #800120',
-            transition:'all .4s'
-          }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
-              stroke={have >= 9 ? 'var(--cream)' : '#FFFFFF'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              style={{ flexShrink: 0, animation: have >= 9 ? 'bellSwing 0.4s ease infinite' : 'none', transformOrigin:'top center' }}>
-              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-            </svg>
-            <div>
-              <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: have >= 9 ? 'var(--cream)' : '#FFFFFF' }}>
-                {have >= 9
-                  ? 'The bell has rung. Entering prep room...'
-                  : "Turn your volume up! When the 9th person joins, the bell rings and you'll be moved to the prep room."}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ flex: 1, border:'1px solid #FFFFFF20', borderRadius: 2, padding:'14px 20px 16px', background:'#0A0A0A', position:'relative', display:'flex', flexDirection:'column', minHeight: 0, overflow:'hidden' }}>
+          <div style={{ flex: 1, border:'1px solid #FFFFFF20', borderRadius: 10, padding:'14px 20px 16px', background:'#0A0A0A', position:'relative', display:'flex', flexDirection:'column', minHeight: 0, overflow:'hidden' }}>
             <div style={{ display:'flex', justifyContent:'space-between', marginBottom: 4 }}>
-              <SmallCap>01 {'\u00b7'} The Circuit</SmallCap>
+              <SmallCap>The Round</SmallCap>
               <SmallCap>Pod Ardor</SmallCap>
             </div>
             <div style={{ flex: 1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight: 0, gap: 6, overflow:'hidden' }}>
-              <FormingDial progress={have/9} needed={9} have={have}/>
-              {have < 9 && (
-                <div className="mono" style={{ fontSize: 10, color:'#CCCCCC', lineHeight: 1.3, textAlign:'center' }}>
-                  {9 - have} {9 - have === 1 ? 'person' : 'people'} left to join the pod.
+              <FormingDial progress={have/12} needed={12} have={have}/>
+              {have < 12 && (
+                <div className="mono" style={{ fontSize: 12, color:'#CCCCCC', lineHeight: 1.3, textAlign:'center' }}>
+                  {12 - have} {12 - have === 1 ? 'person' : 'people'} left to join the pod.
                 </div>
               )}
             </div>
             <HairRule style={{ margin:'10px 0' }}/>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 0, textAlign:'center' }}>
-              <Stat kicker="Calls" value="8" sub="in total"/>
+              <Stat kicker="Dates" value="6" sub="in total"/>
               <Stat kicker="Per call" value="5:00" sub="minutes"/>
-              <Stat kicker="Verdict" value="2:00" sub="minutes"/>
+              <Stat kicker="Verdict" value="1:00" sub="minute"/>
             </div>
           </div>
 
@@ -1075,7 +1086,7 @@ function LobbyView({ tweaks }) {
           display:'flex', alignItems:'center', justifyContent:'center', animation:'fade .3s ease both'
         }}>
           <div style={{
-            background:'#111111', border:'1px solid var(--ink)', borderRadius: 2,
+            background:'#111111', border:'1px solid var(--ink)', borderRadius: 10,
             padding:'48px 56px', textAlign:'center', boxShadow:'0 40px 80px -30px #0A0A0A80',
             maxWidth: 520
           }}>
@@ -1085,16 +1096,16 @@ function LobbyView({ tweaks }) {
               <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
               <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
             </svg>
-            <div className="serif" style={{ fontSize: 36, lineHeight: 1, letterSpacing:'-0.02em' }}>
+            <div className="serif" style={{ fontSize: 48, lineHeight: 1, letterSpacing:'-0.02em' }}>
               All <span style={{ fontStyle:'italic', color:'var(--rust)' }}>9 players</span> are here.
             </div>
             <div className="serif" style={{ fontSize: 18, fontStyle:'italic', color:'#CCCCCC', marginTop: 12, lineHeight: 1.3 }}>
               You are now moving to the prep room.
             </div>
-            <div className="serif" style={{ fontSize: 72, lineHeight: 1, color:'var(--rust)', marginTop: 20, fontFeatureSettings:'"tnum"' }}>
+            <div className="serif" style={{ fontSize: 48, lineHeight: 1, color:'var(--rust)', marginTop: 20, fontFeatureSettings:'"tnum"' }}>
               {countdownSec}
             </div>
-            <div className="mono caps" style={{ fontSize: 10, color:'#888888', letterSpacing:'0.16em', marginTop: 8 }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.16em', marginTop: 8 }}>
               seconds
             </div>
           </div>
@@ -1107,9 +1118,9 @@ function LobbyView({ tweaks }) {
 function Stat({ kicker, value, sub }) {
   return (
     <div style={{ borderRight:'1px solid var(--line)', padding:'4px 6px' }}>
-      <div className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.14em' }}>{kicker}</div>
-      <div className="serif" style={{ fontSize: 30, lineHeight: 1.1, marginTop: 2 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 8, color:'#888888', marginTop: 2 }}>{sub}</div>}
+      <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.12em' }}>{kicker}</div>
+      <div className="serif" style={{ fontSize: 32, lineHeight: 1.1, marginTop: 2 }}>{value}</div>
+      {sub && <div className="mono" style={{ fontSize: 12, color:'#888888', marginTop: 2 }}>{sub}</div>}
     </div>
   );
 }
@@ -1117,9 +1128,9 @@ function Stat({ kicker, value, sub }) {
 function RulesCtaCard() {
   return (
     <button style={{
-      padding:'14px 20px', border:'1px solid var(--ink)', borderRadius: 2, background:'#1A1A1A',
+      padding:'14px 20px', border:'1px solid var(--ink)', borderRadius: 10, background:'#1A1A1A',
       display:'flex', justifyContent:'space-between', alignItems:'center',
-      fontFamily:'Lato, sans-serif', fontSize: 11, letterSpacing:'0.14em', textTransform:'uppercase',
+      fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase',
       color:'var(--ink)'
     }}>
       <span>View full rules & penalties</span>
@@ -1136,38 +1147,38 @@ function SafetyCard() {
     { label:'Face not visible', note:'Pause after 10s' },
     { label:'Screen recording detected', note:'Call ends · permanent ban' },
     { label:'Indecorum', note:'Auto-report to human' },
-    { label:'Background audio leak', note:'Mic muted, warning' },
+    { label:'Backgcircuit audio leak', note:'Mic muted, warning' },
   ];
   return (
-    <div style={{ padding:'18px 20px', border:'1px solid var(--ink)', borderRadius: 2, background:'#1A1A1A' }}>
+    <div style={{ padding:'18px 20px', border:'1px solid var(--ink)', borderRadius: 10, background:'#1A1A1A' }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
         <SmallCap>08 · Decorum Engine</SmallCap>
         <SmallCap style={{ color:'var(--rust)' }}>Live</SmallCap>
       </div>
 
-      <div className="serif" style={{ fontSize: 20, lineHeight: 1.15, marginTop: 10, letterSpacing:'-0.01em' }}>
+      <div className="serif" style={{ fontSize: 24, lineHeight: 1.1, marginTop: 10, letterSpacing:'-0.01em' }}>
         AI vision is <span style={{ fontStyle:'italic' }}>watching the room.</span>
       </div>
 
       {/* Strike meter */}
-      <div style={{ marginTop: 14, padding:'12px 14px', background:'#1A1A1A', borderRadius: 2 }}>
+      <div style={{ marginTop: 14, padding:'12px 14px', background:'#1A1A1A', borderRadius: 10 }}>
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
-          <span className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.16em' }}>Your strike count</span>
-          <span className="mono" style={{ fontSize: 10, color:'#888888' }}>{strikesUsed} of {strikesMax}</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.16em' }}>Your strike count</span>
+          <span className="mono" style={{ fontSize: 12, color:'#888888' }}>{strikesUsed} of {strikesMax}</span>
         </div>
         <div style={{ display:'flex', gap: 6, marginTop: 8 }}>
           {[...Array(strikesMax)].map((_, i) => {
             const used = i < strikesUsed;
             return (
               <div key={i} style={{
-                flex: 1, padding:'8px 6px', borderRadius: 2,
+                flex: 1, padding:'8px 6px', borderRadius: 10,
                 border: used ? '1px solid var(--rust)' : '1px dashed var(--line-strong)',
                 background: used ? 'var(--rust)' : 'transparent',
                 color: used ? 'var(--cream)' : 'var(--ink-3)',
                 textAlign:'center'
               }}>
                 <div className="serif" style={{ fontSize: 18, lineHeight: 1, fontStyle:'italic' }}>{i+1}</div>
-                <div className="mono" style={{ fontSize: 8, letterSpacing:'0.14em', textTransform:'uppercase', marginTop: 2 }}>
+                <div className="mono" style={{ fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', marginTop: 2 }}>
                   {i===0?'Warning':i===1?'14-day ban':'Deleted'}
                 </div>
               </div>
@@ -1178,16 +1189,16 @@ function SafetyCard() {
 
       {/* Highlighted flags */}
       <div style={{ marginTop: 14 }}>
-        <div className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.16em', marginBottom: 8 }}>Flags · auto-triggered</div>
+        <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.16em', marginBottom: 8 }}>Flags · auto-triggered</div>
         <div style={{ display:'flex', flexDirection:'column', gap: 6 }}>
           {flags.map((f, i) => (
             <div key={i} style={{
               display:'grid', gridTemplateColumns:'auto 1fr auto', gap: 10, alignItems:'center',
-              padding:'8px 10px', border:'1px solid #FFFFFF20', borderLeft:'3px solid var(--rust)', borderRadius: 2, background:'#1A1A1A'
+              padding:'8px 10px', border:'1px solid #FFFFFF20', borderLeft:'3px solid var(--rust)', borderRadius: 10, background:'#1A1A1A'
             }}>
               <span style={{ width: 6, height: 6, borderRadius: 99, background:'var(--rust)' }}/>
-              <span className="serif" style={{ fontSize: 14, lineHeight: 1.2 }}>{f.label}</span>
-              <span className="mono caps" style={{ fontSize: 8, color:'#888888', letterSpacing:'0.14em' }}>{f.note}</span>
+              <span className="serif" style={{ fontSize: 14, lineHeight: 1.1 }}>{f.label}</span>
+              <span className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.12em' }}>{f.note}</span>
             </div>
           ))}
         </div>
@@ -1196,13 +1207,13 @@ function SafetyCard() {
       {/* CTA to full rules */}
       <button style={{
         marginTop: 14, width:'100%', padding:'11px 14px',
-        border:'1px solid var(--ink)', borderRadius: 2,
-        fontFamily:'Lato, sans-serif', fontSize: 10, letterSpacing:'0.14em', textTransform:'uppercase',
+        border:'1px solid var(--ink)', borderRadius: 10,
+        fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase',
         color:'var(--ink)', background:'transparent',
         display:'flex', justifyContent:'space-between', alignItems:'center'
       }}>
         <span>View full rules & penalties</span>
-        <span style={{ fontFamily:'Lato, sans-serif', fontSize: 16, fontStyle:'italic' }}>→</span>
+        <span style={{ fontFamily:'Lato, sans-serif', fontSize: 18, fontStyle:'italic' }}>→</span>
       </button>
     </div>
   );
@@ -1210,12 +1221,12 @@ function SafetyCard() {
 
 function PromptPreview() {
   return (
-    <div style={{ padding:'16px 18px', background:'var(--ink)', color:'var(--paper)', borderRadius: 2, position:'relative', overflow:'hidden' }}>
-      <SmallCap style={{ color:'#FFFFFF80' }}>10 · Icebreaker · Call 1</SmallCap>
-      <div className="serif" style={{ fontSize: 24, lineHeight: 1.15, marginTop: 10, fontStyle:'italic' }}>
+    <div style={{ padding:'16px 18px', background:'var(--ink)', color:'var(--paper)', borderRadius: 10, position:'relative', overflow:'hidden' }}>
+      <SmallCap style={{ color:'#FFFFFF80' }}>10 · Icebreaker · Date 1</SmallCap>
+      <div className="serif" style={{ fontSize: 24, lineHeight: 1.1, marginTop: 10, fontStyle:'italic' }}>
         "What's a skill you quietly think you have — and would refuse to prove on camera?"
       </div>
-      <div className="mono" style={{ fontSize: 10, opacity: 0.6, marginTop: 12 }}>
+      <div className="mono" style={{ fontSize: 12, opacity: 0.6, marginTop: 12 }}>
         Appears bottom-center when the bell rings. Unique per call.
       </div>
     </div>
@@ -1225,35 +1236,35 @@ function PromptPreview() {
 const btnSubtle = {
   padding:'9px 14px', fontSize: 12, fontFamily:'Lato, sans-serif',
   letterSpacing:'0.08em', color:'#CCCCCC', border:'1px solid #FFFFFF20',
-  borderRadius: 2, background:'transparent', textTransform:'uppercase'
+  borderRadius: 10, background:'transparent', textTransform:'uppercase'
 };
 const btnSolid = {
   padding:'9px 16px', fontSize: 12, fontFamily:'Lato, sans-serif',
   letterSpacing:'0.08em', color:'var(--cream)', border:'1px solid var(--ink)',
-  borderRadius: 2, background:'var(--ink)', textTransform:'uppercase'
+  borderRadius: 10, background:'var(--ink)', textTransform:'uppercase'
 };
 
 function Footer() {
   return (
     <footer style={{ padding:'24px 36px 60px', borderTop:'1px solid var(--line-strong)', marginTop: 20, display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap: 32, alignItems:'start' }}>
       <div>
-        <div className="serif" style={{ fontSize: 22, fontStyle:'italic' }}>Love at First Site</div>
-        <div className="mono" style={{ fontSize: 10, color:'#888888', marginTop: 6, lineHeight: 1.6 }}>
+        <div className="serif" style={{ fontSize: 24, fontStyle:'italic' }}>Love at First Site</div>
+        <div className="mono" style={{ fontSize: 12, color:'#888888', marginTop: 6, lineHeight: 1.5 }}>
           A synchronous dating circuit run on weeknights.<br/>
-          Nine strangers. Eight calls. One revelation.
+          Ten people. Nine dates. One revelation.
         </div>
       </div>
       <div style={{ display:'flex', flexDirection:'column', gap: 4 }}>
         <SmallCap>House Rules</SmallCap>
-        <a className="u mono" style={{ fontSize: 11, marginTop: 6 }}>The 5-2-8 Rotation</a>
-        <a className="u mono" style={{ fontSize: 11 }}>Three-Strike System</a>
-        <a className="u mono" style={{ fontSize: 11 }}>Why Profiles Lock</a>
-        <a className="u mono" style={{ fontSize: 11 }}>The Fuzzy-Match Reprieve</a>
+        <a className="u mono" style={{ fontSize: 12, marginTop: 6 }}>The 5-2-8 Rotation</a>
+        <a className="u mono" style={{ fontSize: 12 }}>Three-Strike System</a>
+        <a className="u mono" style={{ fontSize: 12 }}>Why Profiles Lock</a>
+        <a className="u mono" style={{ fontSize: 12 }}>The Fuzzy-Match Reprieve</a>
       </div>
       <div style={{ display:'flex', flexDirection:'column', gap: 4 }}>
         <SmallCap>Correspondence</SmallCap>
-        <div className="mono" style={{ fontSize: 11, marginTop: 6, color:'#CCCCCC' }}>hello@lovedatfirstsight.co</div>
-        <div className="mono" style={{ fontSize: 11, color:'#CCCCCC' }}>Edit profile: submit the Manual Contact Form.</div>
+        <div className="mono" style={{ fontSize: 12, marginTop: 6, color:'#CCCCCC' }}>hello@lovedatfirstsight.co</div>
+        <div className="mono" style={{ fontSize: 12, color:'#CCCCCC' }}>Edit profile: submit the Manual Contact Form.</div>
       </div>
     </footer>
   );

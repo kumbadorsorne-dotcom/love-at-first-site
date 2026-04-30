@@ -31,14 +31,14 @@ function IntermissionChecklist() {
   return (
     <div style={{ padding:'14px 18px', border:'1px solid var(--line-strong)', borderRadius: 2, background:'var(--cream)' }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 8 }}>
-        <span className="caps mono" style={{ fontSize: 10, letterSpacing:'0.16em', color:'var(--ink-3)' }}>Set-Up Checklist</span>
-        <span className="caps mono" style={{ fontSize: 10, letterSpacing:'0.16em', color:'var(--rust)' }}>Before Call {NEXT_CALL_IDX}</span>
+        <span className="caps mono" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--ink-3)' }}>Checklist</span>
+        <span className="caps mono" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--rust)' }}>Before Call {NEXT_CALL_IDX}</span>
       </div>
       <div style={{ display:'flex', flexDirection:'column', gap: 2 }}>
         {items.map((it, i) => (
           <div key={i} style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'4px 0', borderBottom: i===items.length-1 ? 'none' : '1px dotted var(--line-strong)' }}>
-            <span className="mono" style={{ fontSize: 11 }}>{it.label}</span>
-            <span className="mono caps" style={{ fontSize: 9, letterSpacing:'0.14em', color: it.ok ? 'var(--ink-3)' : 'var(--rust)' }}>
+            <span className="mono" style={{ fontSize: 12 }}>{it.label}</span>
+            <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.14em', color: it.ok ? 'var(--ink-3)' : 'var(--rust)' }}>
               {it.ok ? '✓ ' : '! '}{it.value}
             </span>
           </div>
@@ -52,10 +52,10 @@ function MiniMirror() {
   return (
     <div style={{ position:'relative', aspectRatio:'4/5', border:'1px solid var(--line-strong)', background:'var(--paper-2)', borderRadius: 2, overflow:'hidden' }}>
       <Silhouette seed={1}/>
-      <div style={{ position:'absolute', top: 10, left: 10, padding:'4px 8px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.12em', textTransform:'uppercase', borderRadius: 2 }}>Mirror</div>
+      <div style={{ position:'absolute', top: 10, left: 10, padding:'4px 8px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', borderRadius: 2 }}>Mirror</div>
       <div style={{ position:'absolute', bottom: 10, left: 10, right: 10, display:'flex', gap: 4, justifyContent:'center', flexWrap:'wrap' }}>
         {['lighting','audio','framing'].map(x => (
-          <div key={x} style={{ padding:'3px 8px', background:'#FFFFFFE0', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 8, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--ink)' }}>{x} ✓</div>
+          <div key={x} style={{ padding:'3px 8px', background:'#FFFFFFE0', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--ink)' }}>{x} ✓</div>
         ))}
       </div>
     </div>
@@ -98,11 +98,11 @@ function IntermissionView({ tweaks }) {
       {/* Top bar */}
       <div style={{ display:'grid', gridTemplateColumns:'1fr auto', gap: 40, alignItems:'end', borderBottom:'1px solid var(--line-strong)', paddingBottom: 20, marginBottom: 24 }}>
         <div>
-          <div className="mono caps" style={{ fontSize: 10, color:'var(--ink-3)' }}>Verdict gap · between Call {JUST_FINISHED_IDX} and Call {NEXT_CALL_IDX} · Pod Ardor</div>
-          <div className="serif" style={{ fontSize: 68, lineHeight: 0.95, letterSpacing:'-0.03em', marginTop: 8 }}>
+          <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)' }}>Verdict gap · between Call {JUST_FINISHED_IDX} and Call {NEXT_CALL_IDX} · Pod Ardor</div>
+          <div className="serif" style={{ fontSize: 48, lineHeight: 0.95, letterSpacing:'-0.03em', marginTop: 8 }}>
             Two minutes to <span style={{ fontStyle:'italic', color:'var(--rust)' }}>reset.</span>
           </div>
-          <div className="serif" style={{ fontSize: 17, fontStyle:'italic', color:'var(--ink-2)', marginTop: 10, lineHeight: 1.35, maxWidth: 600 }}>
+          <div className="serif" style={{ fontSize: 18, fontStyle:'italic', color:'var(--ink-2)', marginTop: 10, lineHeight: 1.35, maxWidth: 600 }}>
             Call {JUST_FINISHED_IDX} just ended. Log your verdict, jot your note, and look up — Call {NEXT_CALL_IDX} starts at the bell.
           </div>
         </div>
@@ -116,14 +116,14 @@ function IntermissionView({ tweaks }) {
                 style={{ transition:'stroke-dashoffset 1s linear' }}/>
             </svg>
             <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center' }}>
-              <span style={{ fontFamily:'Lato, sans-serif', fontSize: 30, lineHeight: 1, fontFeatureSettings:'"tnum"', color: urgent ? 'var(--rust)' : 'var(--ink)' }}>{fmtT(timeLeft)}</span>
-              <span className="mono caps" style={{ fontSize: 8, color:'var(--ink-3)', letterSpacing:'0.16em', marginTop: 4 }}>of 2:00</span>
+              <span style={{ fontFamily:'Lato, sans-serif', fontSize: 32, lineHeight: 1, fontFeatureSettings:'"tnum"', color: urgent ? 'var(--rust)' : 'var(--ink)' }}>{fmtT(timeLeft)}</span>
+              <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em', marginTop: 4 }}>of 2:00</span>
             </div>
           </div>
           <div>
-            <div className="mono caps" style={{ fontSize: 10, color:'var(--ink-3)' }}>Bell for Call {NEXT_CALL_IDX}</div>
-            <div className="serif" style={{ fontSize: 20, fontStyle:'italic' }}>Resuming automatically</div>
-            <div className="mono" style={{ fontSize: 10, color:'var(--ink-3)', marginTop: 4, fontStyle:'italic' }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)' }}>Bell for Call {NEXT_CALL_IDX}</div>
+            <div className="serif" style={{ fontSize: 24, fontStyle:'italic' }}>Resuming automatically</div>
+            <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', marginTop: 4, fontStyle:'italic' }}>
               Leaving now = strike 1 of 3.
             </div>
           </div>
@@ -136,10 +136,10 @@ function IntermissionView({ tweaks }) {
         {/* JUST FINISHED — still anonymous (no reveal until end) */}
         <div>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 10 }}>
-            <span className="mono caps" style={{ fontSize: 10, color:'var(--rust)', letterSpacing:'0.16em' }}>Just finished · Call {JUST_FINISHED_IDX}</span>
-            <span className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>Face sealed until reveal</span>
+            <span className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>Just finished · Call {JUST_FINISHED_IDX}</span>
+            <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em' }}>Face sealed until reveal</span>
           </div>
-          <div className="serif" style={{ fontSize: 36, lineHeight: 1, marginBottom: 14, letterSpacing:'-0.02em' }}>
+          <div className="serif" style={{ fontSize: 48, lineHeight: 1, marginBottom: 14, letterSpacing:'-0.02em' }}>
             Log your <span style={{ fontStyle:'italic', color:'var(--rust)' }}>verdict.</span>
           </div>
 
@@ -153,26 +153,26 @@ function IntermissionView({ tweaks }) {
                 <Silhouette seed={justFinished.seed}/>
               </div>
               <div style={{ position:'absolute', inset: 0, background:'linear-gradient(180deg, transparent 50%, #FFFFFFCC)' }}/>
-              <div style={{ position:'absolute', top: 6, left: 6, padding:'2px 6px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 8, letterSpacing:'0.14em', textTransform:'uppercase', borderRadius: 2 }}>
+              <div style={{ position:'absolute', top: 6, left: 6, padding:'2px 6px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.14em', textTransform:'uppercase', borderRadius: 2 }}>
                 Call {JUST_FINISHED_IDX} · done
               </div>
             </div>
             <div>
-              <div className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.14em' }}>
+              <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.14em' }}>
                 {yourVerdict === 'yes' ? '♥ You said yes' : yourVerdict === 'no' ? '✕ You said no' : '— awaiting verdict'}
               </div>
               <div className="serif" style={{ fontSize: 32, lineHeight: 1, marginTop: 6, letterSpacing:'-0.01em' }}>
-                {justFinished.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 22 }}>, {justFinished.age}</span>
+                {justFinished.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 24 }}>, {justFinished.age}</span>
               </div>
-              <div className="mono" style={{ fontSize: 11, color:'var(--ink-3)', marginTop: 6, letterSpacing:'0.08em' }}>{justFinished.occ} · {justFinished.city}</div>
-              <div className="mono" style={{ fontSize: 10, color:'var(--ink-3)', marginTop: 4, fontStyle:'italic' }}>
+              <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', marginTop: 6, letterSpacing:'0.08em' }}>{justFinished.occ} · {justFinished.city}</div>
+              <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', marginTop: 4, fontStyle:'italic' }}>
                 You can still flip your verdict before the bell.
               </div>
 
               <div style={{ marginTop: 12, paddingTop: 12, borderTop:'1px dotted var(--line-strong)' }}>
-                <div className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.16em', marginBottom: 6 }}>Your note</div>
+                <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em', marginBottom: 6 }}>Your note</div>
                 {justNote ? (
-                  <div className="serif" style={{ fontSize: 16, fontStyle:'italic', color:'var(--ink)', lineHeight: 1.35 }}>
+                  <div className="serif" style={{ fontSize: 18, fontStyle:'italic', color:'var(--ink)', lineHeight: 1.35 }}>
                     "{justNote}"
                   </div>
                 ) : (
@@ -186,7 +186,7 @@ function IntermissionView({ tweaks }) {
               <div style={{ display:'flex', gap: 8, marginTop: 14 }}>
                 <button style={verdictBtn(yourVerdict === 'yes')}>♥ Yes</button>
                 <button style={verdictBtn(yourVerdict === 'no')}>✕ No</button>
-                <button onClick={() => window.__setView && window.__setView('notes')} style={{ flex: 1, padding:'8px 10px', fontFamily:'Lato, sans-serif', fontSize: 10, letterSpacing:'0.12em', textTransform:'uppercase', background:'transparent', border:'1px dashed var(--line-strong)', borderRadius: 2, color:'var(--ink-2)' }}>Edit note →</button>
+                <button onClick={() => window.__setView && window.__setView('notes')} style={{ flex: 1, padding:'8px 10px', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', background:'transparent', border:'1px dashed var(--line-strong)', borderRadius: 2, color:'var(--ink-2)' }}>Edit note →</button>
               </div>
             </div>
           </div>
@@ -202,13 +202,13 @@ function IntermissionView({ tweaks }) {
         {/* NEXT UP — loading now */}
         <div>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 10 }}>
-            <span className="mono caps" style={{ fontSize: 10, color:'var(--rust)', letterSpacing:'0.16em' }}>
+            <span className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>
               <span style={{ display:'inline-block', width: 6, height: 6, borderRadius: 99, background:'var(--rust)', marginRight: 6, verticalAlign:'middle', animation:'pulse 1.2s infinite' }}/>
               Next up · Call {NEXT_CALL_IDX}
             </span>
-            <span className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>Connecting…</span>
+            <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em' }}>Connecting…</span>
           </div>
-          <div className="serif" style={{ fontSize: 36, lineHeight: 1, marginBottom: 14, letterSpacing:'-0.02em' }}>
+          <div className="serif" style={{ fontSize: 48, lineHeight: 1, marginBottom: 14, letterSpacing:'-0.02em' }}>
             The room <span style={{ fontStyle:'italic' }}>is warming up.</span>
           </div>
 
@@ -221,26 +221,26 @@ function IntermissionView({ tweaks }) {
                 <div style={{ position:'absolute', inset: 0, background:'linear-gradient(180deg, transparent 40%, #FFFFFFDD)' }}/>
                 {/* scanning line */}
                 <div style={{ position:'absolute', left: 0, right: 0, height: 2, background:'var(--rust)', opacity: 0.5, top:'50%', animation:'intermissionScan 2.4s linear infinite' }}/>
-                <div style={{ position:'absolute', bottom: 8, left: 0, right: 0, textAlign:'center', fontFamily:'Lato, sans-serif', fontSize: 8, letterSpacing:'0.16em', textTransform:'uppercase', color:'var(--rust)' }}>
+                <div style={{ position:'absolute', bottom: 8, left: 0, right: 0, textAlign:'center', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.16em', textTransform:'uppercase', color:'var(--rust)' }}>
                   Unblurs at the bell
                 </div>
               </div>
 
               <div>
-                <div className="serif" style={{ fontSize: 30, lineHeight: 1, letterSpacing:'-0.01em' }}>
-                  {nextPerson.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 22 }}>, {nextPerson.age}</span>
+                <div className="serif" style={{ fontSize: 32, lineHeight: 1, letterSpacing:'-0.01em' }}>
+                  {nextPerson.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 24 }}>, {nextPerson.age}</span>
                 </div>
-                <div className="mono" style={{ fontSize: 11, color:'var(--ink-3)', marginTop: 6, letterSpacing:'0.08em' }}>{nextPerson.occ} · {nextPerson.city}</div>
+                <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', marginTop: 6, letterSpacing:'0.08em' }}>{nextPerson.occ} · {nextPerson.city}</div>
 
                 <div style={{ marginTop: 12, display:'flex', gap: 5, flexWrap:'wrap' }}>
                   {['Non-smoker','Wants kids','Virgo','No pets'].map(t => (
-                    <span key={t} className="mono" style={{ fontSize: 9, padding:'2px 7px', border:'1px solid var(--line-strong)', borderRadius: 2, color:'var(--ink-2)' }}>{t}</span>
+                    <span key={t} className="mono" style={{ fontSize: 12, padding:'2px 7px', border:'1px solid var(--line-strong)', borderRadius: 2, color:'var(--ink-2)' }}>{t}</span>
                   ))}
                 </div>
 
                 <div style={{ marginTop: 14, paddingTop: 12, borderTop:'1px dotted var(--line-strong)' }}>
-                  <div className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.16em', marginBottom: 6 }}>Their icebreaker prompt</div>
-                  <div className="serif" style={{ fontSize: 16, fontStyle:'italic', lineHeight: 1.3 }}>
+                  <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em', marginBottom: 6 }}>Their icebreaker prompt</div>
+                  <div className="serif" style={{ fontSize: 18, fontStyle:'italic', lineHeight: 1.3 }}>
                     "What's the most honest thing you'll say on camera today?"
                   </div>
                 </div>
@@ -250,12 +250,12 @@ function IntermissionView({ tweaks }) {
             {/* Loading strip */}
             <div style={{ marginTop: 14, padding:'10px 12px', background:'var(--paper-2)', borderRadius: 2, display:'flex', alignItems:'center', gap: 12 }}>
               <div style={{ flex: 1 }}>
-                <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.16em' }}>Handshake with {nextPerson.name.toLowerCase()}'s client</div>
+                <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em' }}>Handshake with {nextPerson.name.toLowerCase()}'s client</div>
                 <div style={{ marginTop: 6, height: 3, background:'var(--paper-3)', borderRadius: 2, overflow:'hidden' }}>
                   <div style={{ width: `${Math.min(100, (1-pct)*100)}%`, height:'100%', background:'var(--rust)', transition:'width 1s linear' }}/>
                 </div>
               </div>
-              <span className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.16em' }}>
+              <span className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>
                 {pct > 0.5 ? 'Negotiating' : pct > 0.2 ? 'Syncing audio' : 'Almost ready'}
               </span>
             </div>
@@ -263,7 +263,7 @@ function IntermissionView({ tweaks }) {
 
           {/* Upcoming queue */}
           <div style={{ marginTop: 16 }}>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.16em', marginBottom: 8 }}>After this · still blurred</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em', marginBottom: 8 }}>After this · still blurred</div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap: 6 }}>
               {remaining.filter(p => p.idx !== NEXT_CALL_IDX).map(p => (
                 <div key={p.idx}>
@@ -272,7 +272,7 @@ function IntermissionView({ tweaks }) {
                       <Silhouette seed={p.seed}/>
                     </div>
                   </div>
-                  <div className="mono" style={{ fontSize: 8, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 4, textTransform:'uppercase' }}>Call {p.idx}</div>
+                  <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 4, textTransform:'uppercase' }}>Call {p.idx}</div>
                 </div>
               ))}
             </div>
@@ -286,18 +286,18 @@ function IntermissionView({ tweaks }) {
 
           {/* Quick breathing prompt — single, fixed (no popup churn) */}
           <div style={{ padding:'14px 16px', background:'var(--ink)', color:'var(--cream)', borderRadius: 2 }}>
-            <div className="mono caps" style={{ fontSize: 9, color:'#FFFFFFA0', letterSpacing:'0.16em' }}>Quick reset</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFFA0', letterSpacing:'0.16em' }}>Quick reset</div>
             <div className="serif" style={{ fontSize: 18, fontStyle:'italic', lineHeight: 1.3, marginTop: 6 }}>
               Breathe in for four, out for six. <span style={{ color:'var(--rust)' }}>Twice.</span>
             </div>
-            <div className="mono" style={{ fontSize: 10, color:'#FFFFFFA0', marginTop: 8, fontStyle:'italic' }}>
+            <div className="mono" style={{ fontSize: 12, color:'#FFFFFFA0', marginTop: 8, fontStyle:'italic' }}>
               Don't start the next call with the last one's face still on yours.
             </div>
           </div>
 
           {/* Abandon warning */}
           <div style={{ padding:'12px 14px', border:'1px dashed var(--rust)', borderRadius: 2, background:'var(--cream)' }}>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.16em' }}>Reminder</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>Reminder</div>
             <div className="serif" style={{ fontSize: 14, lineHeight: 1.35, marginTop: 4 }}>
               Closing this tab now counts as <span style={{ fontStyle:'italic', color:'var(--rust)' }}>pod abandonment</span> — strike 1 of 3.
             </div>
@@ -311,7 +311,7 @@ function IntermissionView({ tweaks }) {
 function Stat({ kicker, value }) {
   return (
     <div style={{ padding:'10px 12px', border:'1px solid var(--line-strong)', borderRadius: 2, background:'var(--cream)' }}>
-      <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>{kicker}</div>
+      <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em' }}>{kicker}</div>
       <div className="serif" style={{ fontSize: 24, lineHeight: 1.1, marginTop: 4, letterSpacing:'-0.01em' }}>{value}</div>
     </div>
   );
@@ -321,7 +321,7 @@ function verdictBtn(active) {
   return {
     flex: 1,
     padding:'8px 10px',
-    fontFamily:'Lato, sans-serif', fontSize: 10, letterSpacing:'0.14em', textTransform:'uppercase',
+    fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.14em', textTransform:'uppercase',
     background: active ? 'var(--rust)' : 'transparent',
     color: active ? 'var(--cream)' : 'var(--ink)',
     border: `1px solid ${active ? 'var(--rust)' : 'var(--line-strong)'}`,

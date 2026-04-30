@@ -33,6 +33,15 @@ function VerdictView({ tweaks }) {
   const [showPopup, setShowPopup] = React.useState(false);
   const [popupSec, setPopupSec] = React.useState(5);
 
+  // Hint received notification
+  const [showHint, setShowHint] = React.useState(false);
+  const [hintDismissed, setHintDismissed] = React.useState(false);
+  const [hintSent, setHintSent] = React.useState(false);
+  React.useEffect(() => {
+    const t = setTimeout(() => setShowHint(true), 4000);
+    return () => clearTimeout(t);
+  }, []);
+
   React.useEffect(() => {
     const id = setInterval(() => setTimeLeft(t => t>0 ? t-1 : 0), 1000);
     return () => clearInterval(id);
@@ -88,7 +97,7 @@ function VerdictView({ tweaks }) {
     if (!showPopup) return;
     const id = setInterval(() => {
       setPopupSec(s => {
-        if (s <= 1) { clearInterval(id); window.__setView && window.__setView('circuit'); return 0; }
+        if (s <= 1) { clearInterval(id); window.__setView && window.__setView('round'); return 0; }
         return s - 1;
       });
     }, 1000);
@@ -107,20 +116,20 @@ function VerdictView({ tweaks }) {
       {/* Top strip — unified header */}
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
         <div style={{ display:'flex', gap: 14, alignItems:'baseline' }}>
-          <span className="serif" style={{ fontSize: 20, fontStyle:'italic' }}>Love at First Site</span>
-          <span className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.14em' }}>Pod Ardor</span>
+          <span className="serif" style={{ fontSize: 24, fontStyle:'italic' }}>Love at First Site</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.12em' }}>Pod Ardor</span>
         </div>
         <div style={{ display:'flex', gap: 10, alignItems:'center' }}>
-          <span className="mono caps" style={{ fontSize: 11, color:'var(--cream)', background:'var(--rust)', padding:'4px 10px', letterSpacing:'0.18em', borderRadius: 2, fontWeight: 600 }}>Call 3 / 8 {'\u00b7'} Verdict</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'var(--cream)', background:'var(--rust)', padding:'4px 10px', letterSpacing:'0.16em', borderRadius: 10, fontWeight: 600 }}>Date 3 / 6 {'\u00b7'} Verdict</span>
           <div style={{ display:'flex', gap: 6 }}>
-            {[...Array(8)].map((_,i) => (
+            {[...Array(6)].map((_,i) => (
               <div key={i} style={{
-                width: 22, height: 4, borderRadius: 2,
+                width: 22, height: 4, borderRadius: 10,
                 background: i < 2 ? '#800120' : i === 2 ? '#800120' : '#FFFFFF'
               }}/>
             ))}
           </div>
-          <span style={{ display:'inline-flex', alignItems:'center', gap: 6, padding:'3px 10px', background:'#FFFFFF', color:'#0A0A0A', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.14em', textTransform:'uppercase' }}>
+          <span style={{ display:'inline-flex', alignItems:'center', gap: 6, padding:'3px 10px', background:'#FFFFFF', color:'#0A0A0A', borderRadius: 10, fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase' }}>
             <span style={{ width: 6, height: 6, borderRadius: 99, background:'var(--rust)', animation:'pulse 1.2s infinite' }}/>
             Locked in
           </span>
@@ -128,35 +137,64 @@ function VerdictView({ tweaks }) {
       </div>
 
       {/* Main row — portrait | decision | sidebar */}
-      <div style={{ display:'grid', gridTemplateColumns:'280px 1fr 240px', gap: 16 }}>
+      <div style={{ display:'grid', gridTemplateColumns:'280px 1fr 240px', gap: 16, flex: 1, alignItems:'stretch' }}>
         {/* Portrait card + interests */}
         <div style={{ display:'flex', flexDirection:'column', gap: 8 }}>
-          <div style={{ border:'1px solid #FFFFFF20', background:'#0A0A0A', borderRadius: 2, overflow:'hidden' }}>
+          <div style={{ border:'1px solid #FFFFFF20', background:'#0A0A0A', borderRadius: 10, overflow:'hidden' }}>
             <div style={{ position:'relative', aspectRatio:'1/1' }}>
               <Silhouette seed={4}/>
+              {/* Hint received overlay */}
+              {showHint && !hintDismissed && (
+                <div style={{
+                  position:'absolute', inset: 0,
+                  background:'linear-gradient(180deg, #80012000 0%, #800120E0 60%, #800120 100%)',
+                  display:'flex', flexDirection:'column', justifyContent:'flex-end',
+                  animation:'fade .5s ease both', padding: 18
+                }}>
+                  <div style={{ display:'flex', alignItems:'center', gap: 8, marginBottom: 6 }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" fill="none"/>
+                      <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                      <line x1="9" y1="9" x2="9.01" y2="9"/>
+                      <path d="M15 9c0 0-0.5-1-1.5 0"/>
+                    </svg>
+                    <span className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.12em' }}>A hint</span>
+                  </div>
+                  <div className="serif" style={{ fontSize: 24, color:'#FFFFFF', lineHeight: 1.1 }}>
+                    Mateo is <span style={{ fontStyle:'italic' }}>interested.</span>
+                  </div>
+                  <div className="mono" style={{ fontSize: 12, color:'#FFFFFFB0', marginTop: 6, lineHeight: 1.3 }}>
+                    Your decision is still private until the reveal.
+                  </div>
+                  <button onClick={() => setHintDismissed(true)} style={{
+                    marginTop: 12, padding:'8px 20px', background:'#FFFFFF', color:'#800120',
+                    fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase',
+                    borderRadius: 10, border:'none', cursor:'pointer', fontWeight: 700, alignSelf:'flex-start'
+                  }}>Dismiss</button>
+                </div>
+              )}
             </div>
             <div style={{ padding:'12px 14px' }}>
-              <div className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.12em' }}>Call 3 {'\u00b7'} </div>
-              <div className="serif" style={{ fontSize: 26, lineHeight: 1, marginTop: 4, color:'#FFFFFF' }}>Mateo, <span style={{ fontStyle:'italic' }}>31</span></div>
-              <div className="mono" style={{ fontSize: 10, marginTop: 4, color:'#888888' }}>Sound designer {'\u00b7'} Oakland</div>
+              <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.12em' }}>Date 3</div>
+              <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 4, color:'#FFFFFF' }}>Mateo, <span style={{ fontStyle:'italic' }}>31</span></div>
+              <div className="mono" style={{ fontSize: 12, marginTop: 4, color:'#888888' }}>Sound designer {'\u00b7'} Oakland</div>
             </div>
           </div>
           {/* Interests */}
-          <div style={{ padding:'10px 12px', border:'1px solid #FFFFFF20', borderRadius: 2, background:'#0A0A0A', flex: 1 }}>
+          <div style={{ padding:'12px 20px', border:'1px solid #FFFFFF20', borderRadius: 10, background:'#0A0A0A', flex: 1 }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 8 }}>
-              <div className="mono caps" style={{ fontSize: 8, color:'#FFFFFFB0', letterSpacing:'0.14em' }}>Mateo's interests</div>
-              <div className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.14em' }}>{'\u2665'} 4 shared</div>
+              <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.12em' }}>{'\u2665'} 4 shared interests</div>
             </div>
             <div style={{ display:'flex', flexWrap:'wrap', gap: 4 }}>
               {['Analog film','Field recording','Hiking','Baking','Sci-fi novels','Jazz','Cats','Running','Cycling'].map((x, i) => {
                 const matched = ['Analog film','Hiking','Sci-fi novels','Jazz'].includes(x);
                 return (
                   <span key={i} style={{
-                    padding:'2px 7px', fontSize: 8, fontFamily:'Lato, sans-serif',
+                    padding:'2px 7px', fontSize: 12, fontFamily:'Lato, sans-serif',
                     background: matched ? 'var(--rust)' : 'transparent',
                     color: matched ? '#FFFFFF' : '#888888',
                     border: `1px solid ${matched ? 'var(--rust)' : '#FFFFFF30'}`,
-                    borderRadius: 2, display:'inline-flex', alignItems:'center', gap: 3
+                    borderRadius: 10, display:'inline-flex', alignItems:'center', gap: 3
                   }}>{matched && <span>{'\u2665'}</span>}{x}</span>
                 );
               })}
@@ -164,30 +202,30 @@ function VerdictView({ tweaks }) {
           </div>
         </div>
 
-        {/* Decision column */}
+        {/* Decision column — fixed top, notes fill rest */}
         <div style={{ display:'flex', flexDirection:'column', minHeight: 0 }}>
+          <div style={{ height: 320, flexShrink: 0, overflow:'hidden' }}>
           {!choice ? (
             <>
-              <div className="mono caps" style={{ fontSize: 10, color:'#888888' }}>Your verdict</div>
+              <div className="mono caps" style={{ fontSize: 12, color:'#888888' }}>Your decision</div>
               <div style={{ display:'flex', alignItems:'center', gap: 14, marginTop: 4 }}>
                 <div className="serif" style={{ fontSize: 32, lineHeight: 1, letterSpacing:'-0.02em' }}>
                   Would you see <span style={{ fontStyle:'italic' }}>Mateo</span> again?
                 </div>
-                <div style={{ width: 80, height: 80, flexShrink: 0 }}>
+                <div style={{ width: 80, height: 80, flexShrink: 0, position:'relative' }}>
                   <svg viewBox="0 0 80 80" width="80" height="80">
                     <circle cx="40" cy="40" r="36" fill="#1A1A1A" stroke="#FFFFFF22" strokeWidth="1"/>
                     <circle cx="40" cy="40" r="36" fill="none" stroke="var(--rust)" strokeWidth="2.5"
                       strokeDasharray={2*Math.PI*36} strokeDashoffset={2*Math.PI*36*(1-pct)}
                       transform="rotate(-90 40 40)" style={{ transition:'stroke-dashoffset 1s linear' }}/>
                   </svg>
-                  <div style={{ marginTop: -62, textAlign:'center' }}>
-                    <div className="mono caps" style={{ fontSize: 7, color:'#888888', letterSpacing:'0.08em' }}>Decide & move</div>
-                    <div className="serif" style={{ fontSize: 22, lineHeight: 1, color: timeLeft <= 10 ? '#FF3333' : '#FFFFFF' }}>{fmtT(timeLeft)}</div>
+                  <div style={{ position:'absolute', inset: 0, display:'flex', alignItems:'center', justifyContent:'center' }}>
+                    <div className="serif" style={{ fontSize: 24, lineHeight: 1, color: timeLeft <= 10 ? '#FF3333' : '#FFFFFF' }}>{fmtT(timeLeft)}</div>
                   </div>
                 </div>
               </div>
-              <div className="mono" style={{ fontSize: 10, color:'#888888', marginTop: 8, maxWidth: 440, lineHeight: 1.55 }}>
-                They won't know your answer unless they pick you too. Contact releases only on mutual "yes."
+              <div className="mono" style={{ fontSize: 12, color:'#888888', marginTop: 8, lineHeight: 1.5, whiteSpace:'nowrap' }}>
+                Choose if you would like to see Mateo again. Your answer stays private until all your dates are complete.
               </div>
 
               <div style={{ marginTop: 14 }}>
@@ -195,17 +233,17 @@ function VerdictView({ tweaks }) {
                   <div style={{ display:'flex', gap: 12 }}>
                     <button onClick={() => pick('yes')} style={{
                       flex: 1, padding: '16px', background:'transparent', color:'#FFFFFF',
-                      border:'1px solid var(--rust)', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 26, cursor:'pointer'
+                      border:'1px solid var(--rust)', borderRadius: 10, fontFamily:'Lato, sans-serif', fontSize: 24, cursor:'pointer'
                     }}>Yes {'\u00b7'} tell them</button>
                     <button onClick={() => pick('no')} style={{
                       flex: 1, padding: '16px', background:'transparent', color:'var(--ink)',
-                      border:'1px solid var(--ink)', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 26, fontStyle:'italic', cursor:'pointer'
+                      border:'1px solid var(--ink)', borderRadius: 10, fontFamily:'Lato, sans-serif', fontSize: 24, fontStyle:'italic', cursor:'pointer'
                     }}>No {'\u00b7'} move along</button>
                   </div>
                 )}
 
                 {kind === 'swipe' && (
-                  <div style={{ position:'relative', height: 92, border:'1px solid var(--line-strong)', borderRadius: 2, background:'#FFFFFF', padding: 6, display:'flex', alignItems:'center' }}>
+                  <div style={{ position:'relative', height: 92, border:'1px solid var(--line-strong)', borderRadius: 10, background:'#FFFFFF', padding: 6, display:'flex', alignItems:'center' }}>
                     <div style={{ position:'absolute', left: 26, color:'#FFFFFF', fontSize: 18 }} className="serif">{'\u2190'} drag left for <i>yes</i></div>
                     <div style={{ position:'absolute', right: 26, color:'#888888', fontSize: 18 }} className="serif">drag right for <i>no</i> {'\u2192'}</div>
                     <div
@@ -224,7 +262,7 @@ function VerdictView({ tweaks }) {
                         top: 6, width: 80, height: 80, borderRadius: 99,
                         background:'#FFFFFF', color:'var(--ink)',
                         border: '1px solid var(--ink)', display:'flex', alignItems:'center', justifyContent:'center',
-                        fontFamily:'Lato, sans-serif', fontSize: 22, fontStyle:'italic', cursor:'grab'
+                        fontFamily:'Lato, sans-serif', fontSize: 24, fontStyle:'italic', cursor:'grab'
                       }}>{'\u25c9'}</div>
                   </div>
                 )}
@@ -237,15 +275,15 @@ function VerdictView({ tweaks }) {
                       style={{
                         width: 120, height: 120, borderRadius: 99,
                         background:'#FFFFFF', color:'#800120',
-                        border:'1px solid #800120', fontSize: 34, cursor:'pointer', transition:'all .3s'
+                        border:'1px solid #800120', fontSize: 48, cursor:'pointer', transition:'all .3s'
                       }}>Yes</button>
-                    <span className="mono caps" style={{ fontSize: 10, color:'#888888', letterSpacing:'0.18em' }}>or</span>
+                    <span className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.16em' }}>or</span>
                     <button onClick={() => pick('no')}
                       className="serif"
                       style={{
                         width: 120, height: 120, borderRadius: 99,
                         background:'#FFFFFF', color:'var(--ink)',
-                        border:'1px solid var(--ink)', fontSize: 34, fontStyle:'italic', cursor:'pointer', transition:'all .3s'
+                        border:'1px solid var(--ink)', fontSize: 48, fontStyle:'italic', cursor:'pointer', transition:'all .3s'
                       }}>No</button>
                   </div>
                   </>
@@ -254,45 +292,71 @@ function VerdictView({ tweaks }) {
             </>
           ) : (
             <div className="fadein">
-              <div className="mono caps" style={{ fontSize: 10, color:'#FFFFFF', letterSpacing:'0.16em' }}>{'\u2665'} Verdict locked in</div>
-              <div className="serif" style={{ fontSize: 40, lineHeight: 1.02, marginTop: 4, letterSpacing:'-0.02em' }}>
+              <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.16em' }}>{'\u2665'} Verdict locked in</div>
+              <div className="serif" style={{ fontSize: 48, lineHeight: 1, marginTop: 4, letterSpacing:'-0.02em' }}>
                 {choice === 'yes' ? <><span style={{ fontStyle:'italic', color:'#800120' }}>Yes</span> on Mateo.</> : <><span style={{ fontStyle:'italic' }}>No</span> on Mateo.</>}
               </div>
-              <div style={{ display:'flex', alignItems:'baseline', gap: 12, marginTop: 12 }}>
-                <span className="mono" style={{ fontSize: 11, color:'#888888', lineHeight: 1.55 }}>
-                  They won't know unless it's mutual.
-                </span>
-                <button onClick={() => { setChoice(null); setNextCallTime(null); }} style={{
-                  padding:'5px 12px', fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.12em', textTransform:'uppercase',
-                  border:'1px solid var(--line-strong)', borderRadius: 2, color:'#800120', background:'#FFFFFF', cursor:'pointer', whiteSpace:'nowrap'
-                }}>Change your mind</button>
-              </div>
-              <div style={{ marginTop: 20, padding:'18px 22px', border:'1px solid var(--line-strong)', borderRadius: 2, background:'#FFFFFF', display:'flex', alignItems:'center', gap: 16 }}>
-                <div style={{ width: 52, height: 52 }}>
-                  <svg viewBox="0 0 52 52" width="52" height="52">
-                    <circle cx="26" cy="26" r="22" fill="var(--paper-2)" stroke="var(--line-strong)" strokeWidth="1"/>
-                    <circle cx="26" cy="26" r="22" fill="none" stroke="var(--rust)" strokeWidth="2.5"
-                      strokeDasharray={2*Math.PI*22} strokeDashoffset={2*Math.PI*22*(1-pct)}
-                      transform="rotate(-90 26 26)" style={{ transition:'stroke-dashoffset 1s linear' }}/>
-                  </svg>
-                  <div style={{ marginTop: -42, textAlign:'center' }}>
-                    <div className="serif" style={{ fontSize: 16, lineHeight: 1, color: timeLeft <= 10 ? '#FF3333' : '#FFFFFF' }}>{fmtT(timeLeft)}</div>
+
+              {/* Send a hint — premium only */}
+              {choice === 'yes' && (
+                <div style={{ marginTop: 14 }}>
+                  <button
+                    onClick={() => { if (tweaks.tier === 'premium' && !hintSent) setHintSent(true); }}
+                    style={{
+                      padding:'10px 18px', borderRadius: 10, display:'inline-flex', alignItems:'center', gap: 10,
+                      background: hintSent ? '#800120' : 'transparent',
+                      color: '#FFFFFF',
+                      border: hintSent ? '1px solid #800120' : tweaks.tier === 'premium' ? '1px solid #800120' : '1px solid #FFFFFF40',
+                      cursor: tweaks.tier === 'premium' && !hintSent ? 'pointer' : 'default',
+                      fontFamily:'Lato, sans-serif', fontSize: 14, transition:'all .2s',
+                      opacity: 1
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" fill="none"/>
+                      <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                      <line x1="9" y1="9" x2="9.01" y2="9"/>
+                      <path d="M15 9c0 0-0.5-1-1.5 0"/>
+                    </svg>
+                    <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em' }}>{hintSent ? 'Hint sent!' : 'Send a hint'}</span>
+                    {!hintSent && tweaks.tier !== 'premium' && (
+                      <span className="mono" style={{ fontSize: 12, color:'#FFFFFF80', marginLeft: 4 }}>Only for Premium</span>
+                    )}
+                  </button>
+                </div>
+              )}
+              <div style={{ marginTop: 20, padding:'18px 22px', border:'1px solid var(--line-strong)', borderRadius: 10, background:'#FFFFFF' }}>
+                <div style={{ display:'flex', alignItems:'center', gap: 16 }}>
+                  <div style={{ width: 52, height: 52, position:'relative', flexShrink: 0 }}>
+                    <svg viewBox="0 0 52 52" width="52" height="52">
+                      <circle cx="26" cy="26" r="22" fill="var(--paper-2)" stroke="var(--line-strong)" strokeWidth="1"/>
+                      <circle cx="26" cy="26" r="22" fill="none" stroke="var(--rust)" strokeWidth="2.5"
+                        strokeDasharray={2*Math.PI*22} strokeDashoffset={2*Math.PI*22*(1-pct)}
+                        transform="rotate(-90 26 26)" style={{ transition:'stroke-dashoffset 1s linear' }}/>
+                    </svg>
+                    <div style={{ position:'absolute', inset: 0, display:'flex', alignItems:'center', justifyContent:'center' }}>
+                      <div className="serif" style={{ fontSize: 18, lineHeight: 1, color: timeLeft <= 10 ? '#FF3333' : '#0A0A0A' }}>{fmtT(timeLeft)}</div>
+                    </div>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.12em' }}>Next date starts in</div>
+                    <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 4, color:'#800120' }}>Date 4 {'\u00b7'} <span style={{ fontStyle:'italic' }}>Wren, 33</span></div>
+                    <div className="mono" style={{ fontSize: 12, color:'#888888', marginTop: 3 }}>Set builder {'\u00b7'} Austin</div>
                   </div>
                 </div>
-                <div>
-                  <div className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.14em' }}>Next call starts in</div>
-                  <div className="serif" style={{ fontSize: 22, lineHeight: 1, marginTop: 4, color:'#800120' }}>Call 4 {'\u00b7'} <span style={{ fontStyle:'italic' }}>Wren, 33</span></div>
-                  <div className="mono" style={{ fontSize: 9, color:'#888888', marginTop: 3 }}>Set builder {'\u00b7'} Austin</div>
-                </div>
+                <button onClick={() => { setChoice(null); setNextCallTime(null); }} style={{
+                  marginTop: 12, padding:'8px 16px', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase',
+                  border:'none', borderRadius: 10, color:'#FFFFFF', background:'#333333', cursor:'pointer', width:'100%'
+                }}>Change your mind</button>
               </div>
             </div>
           )}
+          </div>
 
-          {/* Notes from Circuit Call 3 — editable */}
-          <div style={{ marginTop: 14, padding:'12px 16px', background:'#0A0A0A', color:'#FFFFFF', border:'1px solid #FFFFFF20', borderRadius: 2, display:'flex', flexDirection:'column', flex: 1, minHeight: 0 }}>
+          {/* Notes from Circuit Date 3 — editable */}
+          <div style={{ marginTop: 14, padding:'12px 16px', background:'#0A0A0A', color:'#FFFFFF', border:'1px solid #FFFFFF20', borderRadius: 10, display:'flex', flexDirection:'column', flex: 1, minHeight: 0 }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 6, flexShrink: 0 }}>
-              <div className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.16em' }}>Your notes {'\u00b7'} from the call</div>
-              <div className="mono caps" style={{ fontSize: 9, color:'#FFFFFF', letterSpacing:'0.14em' }}>Call 3 {'\u00b7'} Mateo</div>
+              <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.16em' }}>Your notes {'\u00b7'} from the call</div>
             </div>
             <textarea
               value={note}
@@ -300,12 +364,12 @@ function VerdictView({ tweaks }) {
               placeholder="Jot a line or two — what he said about jazz, the dog's name, the weird thing about menus."
               style={{
                 flex: 1, width:'100%', resize:'none',
-                padding:'8px 10px', border:'1px solid var(--line-strong)', borderRadius: 2,
+                padding:'8px 10px', border:'1px solid var(--line-strong)', borderRadius: 10,
                 background:'#1A1A1A', fontFamily:'Lato, sans-serif',
-                fontSize: 15, fontStyle:'italic', color:'#FFFFFF', lineHeight: 1.4
+                fontSize: 18, fontStyle:'italic', color:'#FFFFFF', lineHeight: 1.3
               }}/>
-            <div className="mono" style={{ fontSize: 9, color:'#888888', paddingTop: 6, fontStyle:'italic', flexShrink: 0 }}>
-              {note.length} chars {'\u00b7'} editable until next bell.
+            <div className="mono" style={{ fontSize: 12, color:'#888888', paddingTop: 6, fontStyle:'italic', flexShrink: 0 }}>
+              Editable until next bell.
             </div>
           </div>
         </div>
@@ -313,18 +377,17 @@ function VerdictView({ tweaks }) {
         {/* Right sidebar — mirror, preflight, tip */}
         <div style={{ display:'flex', flexDirection:'column', gap: 10 }}>
           {/* Mirror */}
-          <div style={{ border:'1px solid #FFFFFF20', borderRadius: 2, overflow:'hidden', background:'#0A0A0A', aspectRatio:'3/4', position:'relative' }}>
+          <div style={{ border:'1px solid #FFFFFF20', borderRadius: 10, overflow:'hidden', background:'#0A0A0A', aspectRatio:'3/4', position:'relative' }}>
             <Silhouette seed={1}/>
             <div style={{ position:'absolute', bottom: 8, left: 10, color:'var(--cream)', textShadow:'0 1px 6px #0008' }}>
-              <div className="mono caps" style={{ fontSize: 8, letterSpacing:'0.14em', opacity: 0.8 }}>Your mirror</div>
+              <div className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em', opacity: 0.8 }}>Your mirror</div>
             </div>
           </div>
 
-          {/* Set-Up Checklist */}
-          <div style={{ padding:'10px 12px', border:'1px solid #FFFFFF20', borderRadius: 2, background:'#0A0A0A', color:'#FFFFFF' }}>
+          {/* Checklist */}
+          <div style={{ padding:'12px 20px', border:'1px solid #FFFFFF20', borderRadius: 10, background:'#0A0A0A', color:'#FFFFFF' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 8 }}>
-              <div className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.14em' }}>Set-Up Checklist</div>
-              <span className="mono caps" style={{ fontSize: 9, color:'#FFFFFF', letterSpacing:'0.12em' }}>4/4 ok</span>
+              <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.12em' }}>Checklist</div>
             </div>
             {[
               { label:'Wi-Fi', info:'94 Mbps', ok: true },
@@ -333,9 +396,9 @@ function VerdictView({ tweaks }) {
               { label:'Microphone', info:'Built-in Mic', ok: true },
             ].map(c => (
               <div key={c.label} style={{ display:'grid', gridTemplateColumns:'1fr 1fr auto', alignItems:'center', padding:'4px 0', borderBottom:'1px dotted #FFFFFF15', gap: 8 }}>
-                <span className="mono" style={{ fontSize: 10, color:'#FFFFFF' }}>{c.label}</span>
-                <span className="mono" style={{ fontSize: 9, color:'#888888', textAlign:'center' }}>{c.info}</span>
-                <span className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.12em', textAlign:'right' }}>{'\u2713'} Good</span>
+                <span className="mono" style={{ fontSize: 12, color:'#FFFFFF' }}>{c.label}</span>
+                <span className="mono" style={{ fontSize: 12, color:'#888888', textAlign:'center' }}>{c.info}</span>
+                <span className="mono" style={{ fontSize: 12, color:'#FFFFFF', textAlign:'right' }}>{'\u2713'} Good</span>
               </div>
             ))}
           </div>
@@ -343,9 +406,9 @@ function VerdictView({ tweaks }) {
         </div>
 
         {/* Coming up — spans all three columns */}
-        <div style={{ gridColumn:'1 / -1', border:'1px solid #FFFFFF20', borderRadius: 2, background:'#0A0A0A', color:'#FFFFFF', padding:'10px 14px' }}>
+        <div style={{ gridColumn:'1 / -1', border:'1px solid #FFFFFF20', borderRadius: 10, background:'#0A0A0A', color:'#FFFFFF', padding:'12px 20px' }}>
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 8 }}>
-          <div className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.14em' }}>Coming up · calls 4 – 8</div>
+          <div className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.12em' }}>Coming up · dates 4 – 6</div>
         </div>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap: 10 }}>
           {[
@@ -363,10 +426,10 @@ function VerdictView({ tweaks }) {
                 <div style={{ position:'absolute', inset: 0, background:'linear-gradient(180deg, transparent 45%, #FFFFFFCC)' }}/>
               </div>
               <div>
-                <div className="mono caps" style={{ fontSize: 8, color: p.next ? '#FFFFFF' : 'var(--ink-3)', letterSpacing:'0.14em' }}>
-                  Call {p.idx}{p.next ? ' · next' : ''}
+                <div className="mono caps" style={{ fontSize: 12, color: p.next ? '#FFFFFF' : 'var(--ink-3)', letterSpacing:'0.12em' }}>
+                  Date {p.idx}{p.next ? ' · next' : ''}
                 </div>
-                <div className="serif" style={{ fontSize: 15, lineHeight: 1.1, marginTop: 1, color:'#FFFFFF' }}>
+                <div className="serif" style={{ fontSize: 18, lineHeight: 1.1, marginTop: 1, color:'#FFFFFF' }}>
                   {p.name}<span style={{ fontStyle:'italic', fontSize: 12 }}>, {p.age}</span>
                 </div>
               </div>
@@ -375,13 +438,6 @@ function VerdictView({ tweaks }) {
         </div>
       </div>
 
-        {/* Rotating tip — spans first two columns, under next up */}
-        <div style={{ gridColumn:'1 / -1', padding:'10px 14px', background:'#0A0A0A', color:'#FFFFFF', border:'1px solid #FFFFFF20', borderRadius: 2 }}>
-          <span className="caps mono" style={{ fontSize: 8, letterSpacing:'0.14em', color:'var(--paper-3)' }}>{tip.kicker}</span>
-          <div className="serif" style={{ fontSize: 13, fontStyle:'italic', lineHeight: 1.25, marginTop: 3 }}>
-            "{tip.q}"
-          </div>
-        </div>
       </div>
 
       {/* Smile popup at 0 seconds */}
@@ -397,12 +453,13 @@ function VerdictView({ tweaks }) {
             <div className="serif" style={{ fontSize: 96, lineHeight: 1, color:'#800120', marginTop: 24, fontFeatureSettings:'"tnum"' }}>
               {popupSec}
             </div>
-            <div className="mono caps" style={{ fontSize: 10, color:'#FFFFFF80', letterSpacing:'0.16em', marginTop: 8 }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF80', letterSpacing:'0.16em', marginTop: 8 }}>
               seconds
             </div>
           </div>
         </div>
       )}
+
     </div>
   );
 }

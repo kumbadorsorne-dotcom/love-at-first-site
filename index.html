@@ -68,6 +68,9 @@
   @keyframes bellSwing { 0%,100%{ transform: rotate(-16deg); } 50%{ transform: rotate(16deg); } }
   @keyframes bellRipple { 0%{ transform: scale(0.8); opacity: 0.7; } 100%{ transform: scale(1.6); opacity: 0; } }
   @keyframes heartFloat { 0%{ transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; } 20%{ opacity: 1; transform: scale(1); } 100%{ transform: translateY(-100vh) scale(0.3) rotate(45deg); opacity: 0; } }
+  @keyframes matchPop { 0%{ transform: scale(0.85); opacity: 0; } 50%{ transform: scale(1.04); } 100%{ transform: scale(1); opacity: 1; } }
+  @keyframes matchBadgePulse { 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.06); } }
+  @keyframes matchGlow { 0%,100%{ box-shadow: 0 0 0 0 #6B152000; } 50%{ box-shadow: 0 0 20px 4px #6B152040; } }
 
   .fadein { animation: fade .6s ease both; }
 
@@ -99,20 +102,19 @@
 <div id="root"></div>
 <div id="__err" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:#fee;color:#900;font:13px/1.5 monospace;padding:12px;display:none;white-space:pre-wrap"></div>
 <script>
-window.onerror=function(m,s,l,c,e){var d=document.getElementById('__err');d.style.display='block';d.textContent+='ERROR: '+m+'\n  at '+s+':'+l+':'+c+'\n\n';};
-window.addEventListener('unhandledrejection',function(e){var d=document.getElementById('__err');d.style.display='block';d.textContent+='PROMISE: '+e.reason+'\n\n';});
+window.onerror=function(m,s,l,c,e){if(!s||s==='')return;if(/firefox|DarkReader|ethereum|metamask|extensions?\/|chrome-extension|moz-extension/i.test(m+s))return;var d=document.getElementById('__err');d.style.display='block';d.textContent+='ERROR: '+m+'\n  at '+s+':'+l+':'+c+'\n\n';};
+window.addEventListener('unhandledrejection',function(e){var r=String(e.reason||'');if(/firefox|DarkReader|ethereum|metamask|extensions?\/|chrome-extension|moz-extension/i.test(r))return;var d=document.getElementById('__err');d.style.display='block';d.textContent+='PROMISE: '+r+'\n\n';});
 </script>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 
 <script type="text/babel" src="src/silhouettes.jsx"></script>
 <script type="text/babel" src="src/notes.jsx"></script>
 <script type="text/babel" src="src/profile_popup.jsx"></script>
 <script type="text/babel" src="src/tweaks.jsx"></script>
 <script type="text/babel" src="src/lobby.jsx"></script>
-<script type="text/babel" src="src/getready.jsx"></script>
 <script type="text/babel" src="src/getready_notify.jsx"></script>
 <script type="text/babel" src="src/circuit.jsx"></script>
 <script type="text/babel" src="src/logout_button.jsx"></script>

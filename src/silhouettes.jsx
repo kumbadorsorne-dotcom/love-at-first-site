@@ -1,5 +1,5 @@
 // Editorial portrait silhouettes — flat shapes, no features.
-// Each returns an inline SVG <g>; pair with a tinted background.
+// Each returns an inline SVG <g>; pair with a tinted backgcircuit.
 
 const SIL_PALETTES = [
   ['#6B1520', '#F8E8F0'], // plum / light pink

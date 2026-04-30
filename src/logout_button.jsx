@@ -17,11 +17,11 @@ function LogoutButton({ dark = false }) {
       style={{
         display:'flex', marginLeft:'auto', marginRight: 24, marginTop: 48, marginBottom: 24,
         padding:'8px 14px',
-        fontSize: 9, letterSpacing:'0.16em',
+        fontSize: 12, letterSpacing:'0.16em',
         background: dark ? '#111111' : 'var(--cream)',
         color: dark ? '#FFFFFF' : 'var(--ink)',
         border: `1px solid ${dark ? '#FFFFFF40' : 'var(--line-strong)'}`,
-        borderRadius: 2,
+        borderRadius: 10,
         cursor:'pointer',
         alignItems:'center', gap: 6,
         boxShadow: '0 4px 12px -4px #00000020'

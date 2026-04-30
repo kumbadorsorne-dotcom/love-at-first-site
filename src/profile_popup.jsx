@@ -10,7 +10,7 @@ function FullProfilePopup({ p, onClose }) {
   const seed = p.seed || 2;
   const quote = p.quote || p.note || '';
   const bioText = p.bio || '';
-  const pod = p.pod || (p.callIdx ? `Pod Ardor · Call ${p.callIdx}` : '');
+  const pod = p.pod || (p.callIdx ? `Pod Ardor · Date ${p.callIdx}` : '');
   const shared = p.shared || [];
 
   // Build channels if we don't already have them (reveal case).
@@ -33,7 +33,7 @@ function FullProfilePopup({ p, onClose }) {
   }, [p]);
 
   const traits = [
-    ['Wants kids','Yes ♥'], ['Smoking','Never'], ['Zodiac','Air'],
+    ['Wants kids','Yes'], ['Smoking','Never'], ['Zodiac','Air'],
     ['Pets','Dog'], ['Workout','Weekly'], ['Diet','Omnivore'],
     ['Love style','Touch'], ['Sleep','Night owl'], ['Politics','Left'],
   ];
@@ -55,62 +55,49 @@ function FullProfilePopup({ p, onClose }) {
       animation:'fade .2s ease both'
     }}>
       <div onClick={(e) => e.stopPropagation()} style={{
-        background:'var(--cream)', border:'1px solid var(--ink)', borderRadius: 2,
+        background:'var(--cream)', border:'1px solid var(--ink)', borderRadius: 10,
         width:'min(1080px, 100%)', maxHeight:'92vh', overflow:'auto',
         display:'grid', gridTemplateColumns:'440px 1fr', position:'relative'
       }}>
         <button onClick={onClose} className="mono caps" style={{
-          position:'absolute', top: 14, right: 16, fontSize: 10, letterSpacing:'0.16em', color:'var(--ink-3)', zIndex: 2
+          position:'absolute', top: 14, right: 16, fontSize: 12, letterSpacing:'0.16em', color:'var(--ink-3)', zIndex: 2
         }}>Close ×</button>
 
         {/* LEFT — portrait + bio */}
         <div style={{ padding: 28, borderRight:'1px solid var(--line-strong)', display:'flex', flexDirection:'column', gap: 18 }}>
-          <div style={{ aspectRatio:'4/5', overflow:'hidden', borderRadius: 2, border:'1px solid var(--line-strong)', position:'relative' }}>
+          <div style={{ aspectRatio:'1/1', overflow:'hidden', borderRadius: 10, border:'1px solid var(--line-strong)', position:'relative' }}>
             <Silhouette seed={seed}/>
-            <div style={{ position:'absolute', top: 10, left: 10, padding:'3px 8px', background:'var(--rust)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.14em', textTransform:'uppercase', borderRadius: 2 }}>
+            <div style={{ position:'absolute', top: 10, left: 10, padding:'3px 8px', background:'var(--rust)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', borderRadius: 10 }}>
               ♥ Mutual match
             </div>
           </div>
           {/* Mini gallery */}
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap: 5 }}>
-            {[seed, seed+7, seed+3, seed+11, seed+5].map((s,i) => (
-              <div key={i} style={{ aspectRatio:'1/1', overflow:'hidden', borderRadius: 2, border:'1px solid var(--line-strong)' }}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 5 }}>
+            {[seed, seed+7, seed+3, seed+11].map((s,i) => (
+              <div key={i} style={{ aspectRatio:'1/1', overflow:'hidden', borderRadius: 10, border:'1px solid var(--line-strong)' }}>
                 <Silhouette seed={s % 15 + 1}/>
               </div>
             ))}
           </div>
-          <div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.16em' }}>{name} said</div>
-            <div className="serif" style={{ fontSize: 17, fontStyle:'italic', lineHeight: 1.45, marginTop: 6, color:'var(--ink-2)' }}>
-              "{bioText || ("I'm " + name + ". Let's see if we click.")}"
-            </div>
-          </div>
-          {quote && !p.note && (
-            <div style={{ padding:'10px 12px', background:'var(--paper-2)', borderLeft:'2px solid var(--rust)', borderRadius: 2 }}>
-              <div className="mono caps" style={{ fontSize: 8, color:'var(--rust)', letterSpacing:'0.16em' }}>Their opening line</div>
-              <div className="serif" style={{ fontSize: 15, fontStyle:'italic', lineHeight: 1.4, marginTop: 4 }}>"{quote}"</div>
-            </div>
-          )}
         </div>
 
         {/* RIGHT — header, traits, contact */}
         <div style={{ padding: 28, display:'flex', flexDirection:'column', gap: 20 }}>
           <div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.16em' }}>{pod || 'Mutual match'}</div>
-            <div className="serif" style={{ fontSize: 54, lineHeight: 0.98, letterSpacing:'-0.02em', marginTop: 6 }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em' }}>Matched in {p.pod || 'Pod Ardor'} date {p.callIdx || '3'} on Thu, Mar 14</div>
+            <div className="serif" style={{ fontSize: 48, lineHeight: 1, letterSpacing:'-0.02em', marginTop: 6 }}>
               {name}<span style={{ color:'var(--ink-3)', fontStyle:'italic' }}>, {age}</span>
             </div>
             {(occ || city) && (
-              <div className="mono" style={{ fontSize: 11, color:'var(--ink-3)', letterSpacing:'0.08em', marginTop: 6 }}>
+              <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.08em', marginTop: 6 }}>
                 {occ}{occ && city ? ' · ' : ''}{city}{city ? ` · ${4 + (seed * 3) % 22} mi away` : ''}
               </div>
             )}
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.16em', marginTop: 8 }}>♥ Matched · Thu, Mar 14</div>
           </div>
 
           <div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.16em', marginBottom: 8 }}>
-              Their 15 variables <span style={{ color:'var(--rust)' }}>· ♥ = matched</span>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em', marginBottom: 8 }}>
+              Their Interests <span style={{ color:'var(--rust)' }}>· matched</span>
             </div>
             <div style={{ display:'flex', flexWrap:'wrap', gap: 5 }}>
               {(() => {
@@ -122,14 +109,14 @@ function FullProfilePopup({ p, onClose }) {
                   const isMatch = sharedSet.has(field.toLowerCase()) || (!shared.length && fallback.has(field.toLowerCase()));
                   return (
                     <span key={i} className="mono" style={{
-                      fontSize: 10, padding:'4px 9px',
-                      border: isMatch ? '1px solid var(--rust)' : '1px solid var(--line-strong)',
-                      borderRadius: 2,
-                      background: isMatch ? '#6B152010' : 'transparent',
-                      color: isMatch ? 'var(--ink)' : 'var(--ink-2)'
+                      fontSize: 12, padding:'4px 9px',
+                      border: isMatch ? '1px solid #800120' : '1px solid var(--line-strong)',
+                      borderRadius: 10,
+                      background: isMatch ? '#800120' : 'transparent',
+                      color: isMatch ? '#FFFFFF' : 'var(--ink-2)'
                     }}>
                       {isMatch && <span style={{ color:'#FFFFFF', marginRight: 4 }}>{'\u2665'}</span>}
-                      {field} <span style={{ color:'var(--ink-3)' }}>· {value}</span>
+                      {field} <span style={{ color: isMatch ? '#FFFFFFB0' : 'var(--ink-3)' }}>· {value}</span>
                     </span>
                   );
                 });
@@ -137,29 +124,37 @@ function FullProfilePopup({ p, onClose }) {
             </div>
           </div>
 
+          {/* [Name] said */}
           <div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.16em', marginBottom: 8 }}>♥ Contact released</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em' }}>{name} said</div>
+            <div className="serif" style={{ fontSize: 18, fontStyle:'italic', lineHeight: 1.35, marginTop: 6, color:'var(--ink-2)' }}>
+              "{bioText || ("I'm " + name + ". Let's see if we click.")}"
+            </div>
+          </div>
+
+          <div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em', marginBottom: 8 }}>♥ Contact</div>
             <div style={{ display:'flex', flexDirection:'column', gap: 6 }}>
               {channels.map(c => (
                 <button key={c.key} onClick={(e) => { navigator.clipboard.writeText(c.handle); const el = e.currentTarget.querySelector('[data-copied]'); el.style.display='block'; setTimeout(() => el.style.display='none', 1500); }} style={{
                   display:'grid', gridTemplateColumns:'44px 1fr auto', alignItems:'center', gap: 10,
-                  padding:'12px 14px', background:'var(--paper-2)', border:'1px solid var(--line-strong)', borderRadius: 2, textAlign:'left', cursor:'pointer', position:'relative'
+                  padding:'12px 14px', background:'var(--paper-2)', border:'1px solid var(--line-strong)', borderRadius: 10, textAlign:'left', cursor:'pointer', position:'relative'
                 }}>
-                  <span className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.14em' }}>{c.icon}</span>
+                  <span className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.12em' }}>{c.icon}</span>
                   <span className="mono" style={{ fontSize: 12, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{c.handle}</span>
-                  <span className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>{c.label}</span>
-                  <span data-copied style={{ display:'none', position:'absolute', top: -28, right: 0, padding:'4px 10px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 9, borderRadius: 2 }}>Copied!</span>
+                  <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.12em' }}>{c.label}</span>
+                  <span data-copied style={{ display:'none', position:'absolute', top: -28, right: 0, padding:'4px 10px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 12, borderRadius: 10 }}>Copied!</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {p.note && (
-            <div style={{ padding:'12px 14px', background:'var(--paper-2)', borderLeft:'2px solid var(--rust)', borderRadius: 2 }}>
-              <div className="mono caps" style={{ fontSize: 8, color:'var(--rust)', letterSpacing:'0.16em' }}>Your note from the call</div>
-              <div className="serif" style={{ fontSize: 15, fontStyle:'italic', lineHeight: 1.4, marginTop: 4 }}>"{p.note}"</div>
+          <div style={{ padding:'12px 14px', background:'var(--paper-2)', borderLeft:'2px solid var(--rust)', borderRadius: 10 }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>Your note from the date</div>
+            <div className="serif" style={{ fontSize: 18, fontStyle:'italic', lineHeight: 1.3, marginTop: 4, color: p.note ? 'var(--ink)' : 'var(--ink-3)' }}>
+              {p.note ? '"' + p.note + '"' : 'No notes'}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>,

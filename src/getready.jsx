@@ -165,17 +165,17 @@ function GetReadyView({ tweaks }) {
 
       <header style={{ padding:'14px 36px', display:'flex', justifyContent:'space-between', alignItems:'center', borderBottom:'1px solid #FFFFFF18' }}>
         <div style={{ display:'flex', gap: 14, alignItems:'baseline' }}>
-          <span className="serif" style={{ fontSize: 20, fontStyle:'italic' }}>Love at First Site</span>
-          <span className="mono caps" style={{ fontSize: 9, color:'#888888', letterSpacing:'0.14em' }}>Pod Ardor</span>
+          <span className="serif" style={{ fontSize: 24, fontStyle:'italic' }}>Love at First Site</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'#888888', letterSpacing:'0.14em' }}>Pod Ardor</span>
         </div>
         <div style={{ display:'flex', gap: 10, alignItems:'center' }}>
-          <span className="mono caps" style={{ fontSize: 11, color:'var(--cream)', background:'#800120', padding:'4px 10px', letterSpacing:'0.18em', borderRadius: 2, fontWeight: 600 }}>Prep Room</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'var(--cream)', background:'#800120', padding:'4px 10px', letterSpacing:'0.18em', borderRadius: 2, fontWeight: 600 }}>Prep Room</span>
           <div style={{ display:'flex', gap: 6 }}>
             {[...Array(8)].map((_,i) => (
               <div key={i} style={{ width: 22, height: 4, borderRadius: 2, background:'#FFFFFF' }}/>
             ))}
           </div>
-          <span style={{ display:'inline-flex', alignItems:'center', gap: 6, padding:'3px 10px', background:'#FFFFFF', color:'#0A0A0A', borderRadius: 99, fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.14em', textTransform:'uppercase' }}>
+          <span style={{ display:'inline-flex', alignItems:'center', gap: 6, padding:'3px 10px', background:'#FFFFFF', color:'#0A0A0A', borderRadius: 99, fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.14em', textTransform:'uppercase' }}>
             <span style={{ width: 6, height: 6, borderRadius: 99, background:'var(--rust)', animation:'pulse 1.2s infinite' }}/>
             Locked in
           </span>
@@ -196,7 +196,7 @@ function GetReadyView({ tweaks }) {
         {/* TOP-LEFT — Private mirror (hero) */}
         <div style={{ gridRow:'1 / span 2', display:'flex', flexDirection:'column', minHeight: 0 }}>
           
-          <div className="serif" style={{ fontSize: 34, lineHeight: 1, letterSpacing:'-0.02em', marginTop: 6, color:'#FFFFFF' }}>
+          <div className="serif" style={{ fontSize: 48, lineHeight: 1, letterSpacing:'-0.02em', marginTop: 6, color:'#FFFFFF' }}>
             Get ready to <span style={{ fontStyle:'italic', color:'var(--rust)' }}>chat.</span>
           </div>
 
@@ -209,8 +209,8 @@ function GetReadyView({ tweaks }) {
               />
               {mirrorErr && (
                 <div style={{ position:'absolute', inset: 0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding: 20, textAlign:'center' }}>
-                  <div className="serif" style={{ fontSize: 22, fontStyle:'italic', color:'#FFFFFF', lineHeight: 1.1 }}>Mirror off.</div>
-                  <div className="mono" style={{ fontSize: 10, color:'#FFFFFF80', letterSpacing:'0.08em', marginTop: 10, maxWidth: 320, lineHeight: 1.4 }}>
+                  <div className="serif" style={{ fontSize: 24, fontStyle:'italic', color:'#FFFFFF', lineHeight: 1.1 }}>Mirror off.</div>
+                  <div className="mono" style={{ fontSize: 12, color:'#FFFFFF80', letterSpacing:'0.08em', marginTop: 10, maxWidth: 320, lineHeight: 1.4 }}>
                     {mirrorErr === 'blocked'
                       ? 'Allow camera access to see yourself before the bell.'
                       : 'Your browser can\'t show the mirror right now.'}
@@ -221,15 +221,15 @@ function GetReadyView({ tweaks }) {
                 <>
                   <div style={{ position:'absolute', inset:'10% 22%', border:'1px dashed #FFFFFF40', borderRadius: 2, pointerEvents:'none' }}/>
                   <div style={{ position:'absolute', top: 8, left: 10 }}>
-                    <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.16em', color:'var(--rust)', background:'#0A0A0AC0', padding:'3px 6px', borderRadius: 2 }}>● REC — private</span>
+                    <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--rust)', background:'#0A0A0AC0', padding:'3px 6px', borderRadius: 2 }}>● REC — private</span>
                   </div>
                   <div style={{ position:'absolute', bottom: 8, right: 10 }}>
-                    <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.14em', color:'#FFFFFFB0', background:'#0A0A0AC0', padding:'3px 6px', borderRadius: 2 }}>Frame: head + shoulders</span>
+                    <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.14em', color:'#FFFFFFB0', background:'#0A0A0AC0', padding:'3px 6px', borderRadius: 2 }}>Frame: head + shoulders</span>
                   </div>
                 </>
               )}
             </div>
-            <div className="mono" style={{ fontSize: 10, color:'#FFFFFF80', marginTop: 8, letterSpacing:'0.04em' }}>
+            <div className="mono" style={{ fontSize: 12, color:'#FFFFFF80', marginTop: 8, letterSpacing:'0.04em' }}>
               Check your light. Sit up. Nobody sees this feed until the bell.
             </div>
           </div>
@@ -245,24 +245,24 @@ function GetReadyView({ tweaks }) {
               <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
             </svg>
             <div className="serif" style={{
-              fontSize: 128, lineHeight: 0.85, letterSpacing:'-0.04em',
+              fontSize: 96, lineHeight: 0.85, letterSpacing:'-0.04em',
               fontFeatureSettings:'"tnum"',
               color: ready ? 'var(--rust)' : sec <= 10 ? '#6B1520' : '#FFFFFF',
               transition:'color .4s'
             }}>
               {String(mm).padStart(2,'0')}<span style={{ color:'var(--rust)' }}>:</span>{String(ss).padStart(2,'0')}
             </div>
-            <div className="mono caps" style={{ fontSize: 9, color:'#FFFFFFB0', letterSpacing:'0.18em', paddingBottom: 8, marginLeft:'auto' }}>Time until the bell</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFFB0', letterSpacing:'0.18em', paddingBottom: 8, marginLeft:'auto' }}>Time until the bell</div>
           </div>
 
           <div style={{ marginTop: 10, height: 3, background:'#FFFFFF1C', borderRadius: 2, overflow:'hidden' }}>
             <div style={{ width: `${pct*100}%`, height:'100%', background:'var(--rust)', transition:'width 1s linear' }}/>
           </div>
-          <div className="mono" style={{ display:'flex', justifyContent:'space-between', fontSize: 9, color:'#FFFFFF80', letterSpacing:'0.14em', marginTop: 4 }}>
+          <div className="mono" style={{ display:'flex', justifyContent:'space-between', fontSize: 12, color:'#FFFFFF80', letterSpacing:'0.14em', marginTop: 4 }}>
             <span>NOW</span><span>BELL</span>
           </div>
           <div style={{ marginTop: 10, padding:'12px 16px', background:'var(--rust)', borderRadius: 2 }}>
-            <div className="serif" style={{ fontSize: 17, color:'var(--cream)', lineHeight: 1.3 }}>
+            <div className="serif" style={{ fontSize: 18, color:'var(--cream)', lineHeight: 1.3 }}>
               <span style={{ fontWeight: 600 }}>Stay put.</span> When the timer is up and the bell rings, you'll be added to the call with {nextPerson.name} immediately.
             </div>
           </div>
@@ -274,20 +274,20 @@ function GetReadyView({ tweaks }) {
         <div style={{ display:'flex', flexDirection:'column', gap: 12, minHeight: 0 }}>
           <div style={{ border:'1px solid #FFFFFF20', borderRadius: 2, padding:'12px 14px', background:'#0A0A0A', color:'#FFFFFF', display:'flex', flexDirection:'column', minHeight: 0 }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
-              <div className="mono caps" style={{ fontSize: 8, color:'#FFFFFFB0', letterSpacing:'0.16em' }}>03 · First up</div>
-              <div className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.16em' }}>1 of 8</div>
+              <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFFB0', letterSpacing:'0.16em' }}>03 · First up</div>
+              <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.16em' }}>1 of 8</div>
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'56px 1fr', gap: 10, alignItems:'center', marginTop: 8 }}>
-              <div style={{ width: 56, height: 68, position:'relative', borderRadius: 99, overflow:'hidden', border:'1px solid #FFFFFF30' }}>
+              <div style={{ width: 56, height: 56, position:'relative', borderRadius: 99, overflow:'hidden', border:'1px solid #FFFFFF30' }}>
                 <div style={{ position:'absolute', inset: 0, filter:'blur(10px) saturate(1.05)' }}>
                   <Silhouette seed={nextPerson.seed || 2}/>
                 </div>
               </div>
               <div style={{ minWidth: 0 }}>
-                <div className="serif" style={{ fontSize: 22, lineHeight: 1, letterSpacing:'-0.01em', color:'#FFFFFF' }}>
-                  {nextPerson.name}<span style={{ color:'#FFFFFFB0', fontStyle:'italic', fontSize: 16 }}>, {nextPerson.age}</span>
+                <div className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing:'-0.01em', color:'#FFFFFF' }}>
+                  {nextPerson.name}<span style={{ color:'#FFFFFFB0', fontStyle:'italic', fontSize: 18 }}>, {nextPerson.age}</span>
                 </div>
-                <div className="mono" style={{ fontSize: 9, color:'#FFFFFFB0', marginTop: 4, lineHeight: 1.4, letterSpacing:'0.04em' }}>
+                <div className="mono" style={{ fontSize: 12, color:'#FFFFFFB0', marginTop: 4, lineHeight: 1.4, letterSpacing:'0.04em' }}>
                   {nextPerson.occ} · {nextPerson.city}
                 </div>
               </div>
@@ -296,22 +296,22 @@ function GetReadyView({ tweaks }) {
             {/* Interests — matched highlighted */}
             <div style={{ marginTop: 10, paddingTop: 10, borderTop:'1px dotted #FFFFFF28' }}>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 6 }}>
-                <div className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.14em' }}>His interests</div>
-                <div className="mono caps" style={{ fontSize: 8, color:'#FFFFFF', letterSpacing:'0.14em' }}>{'\u2665'} {matched.length} shared Interests</div>
+                <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.14em' }}>His interests</div>
+                <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.14em' }}>{'\u2665'} {matched.length} shared Interests</div>
               </div>
               <div style={{ display:'flex', flexWrap:'wrap', gap: 4 }}>
                 {theirInterests.map((x, i) => {
                   const m = yourInterests.includes(x);
                   return (
                     <span key={i} style={{
-                      padding:'2px 7px', fontSize: 9, fontFamily:'Lato, sans-serif',
+                      padding:'2px 7px', fontSize: 12, fontFamily:'Lato, sans-serif',
                       background: m ? 'var(--rust)' : 'transparent',
                       color: m ? 'var(--cream)' : '#FFFFFFB0',
                       border: `1px solid ${m ? 'var(--rust)' : '#FFFFFF30'}`,
                       borderRadius: 2,
                       display:'inline-flex', alignItems:'center', gap: 3, lineHeight: 1.4
                     }}>
-                      {m && <span style={{ fontSize: 8 }}>{'\u2665'}</span>}
+                      {m && <span style={{ fontSize: 12 }}>{'\u2665'}</span>}
                       {x}
                     </span>
                   );
@@ -323,7 +323,7 @@ function GetReadyView({ tweaks }) {
 
           {/* Up next — remaining calls */}
           <div style={{ border:'1px solid #FFFFFF20', borderRadius: 2, padding:'10px 12px', background:'#111111' }}>
-            <div className="mono caps" style={{ fontSize: 8, color:'#FFFFFFB0', letterSpacing:'0.14em', marginBottom: 8 }}>Up next {'\u00b7'} calls 2-8</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFFB0', letterSpacing:'0.14em', marginBottom: 8 }}>Up next {'\u00b7'} calls 2-8</div>
             <div style={{ display:'flex', gap: 8, overflowX:'auto' }}>
               {[
                 { name:'Priya',   age:28, seed:6 },
@@ -340,7 +340,7 @@ function GetReadyView({ tweaks }) {
                       <Silhouette seed={p.seed}/>
                     </div>
                   </div>
-                  <div className="mono" style={{ fontSize: 7, color:'#FFFFFF80', textAlign:'center', lineHeight: 1.1 }}>
+                  <div className="mono" style={{ fontSize: 12, color:'#FFFFFF80', textAlign:'center', lineHeight: 1.1 }}>
                     {p.name}
                   </div>
                 </div>
@@ -352,14 +352,14 @@ function GetReadyView({ tweaks }) {
 
         {/* Rotating motivational tip — spans both columns */}
         <div style={{ gridColumn:'1 / -1', border:'1px solid #FFFFFF20', borderRadius: 2, padding:'10px 14px', background:'#0A0A0A', color:'#FFFFFF' }}>
-          <span className="caps mono" style={{ fontSize: 8, letterSpacing:'0.14em', color:'#FFFFFFB0' }}>{tip.kicker}</span>
-          <div className="serif" style={{ fontSize: 13, fontStyle:'italic', lineHeight: 1.25, marginTop: 3 }}>
+          <span className="caps mono" style={{ fontSize: 12, letterSpacing:'0.14em', color:'#FFFFFFB0' }}>{tip.kicker}</span>
+          <div className="serif" style={{ fontSize: 12, fontStyle:'italic', lineHeight: 1.25, marginTop: 3 }}>
             "{tip.q}"
           </div>
         </div>
       </main>
 
-      <div className="mono caps" style={{ padding:'10px 28px', borderTop:'1px solid #FFFFFF18', display:'flex', justifyContent:'space-between', fontSize: 8, color:'#FFFFFF80', letterSpacing:'0.2em' }}>
+      <div className="mono caps" style={{ padding:'10px 28px', borderTop:'1px solid #FFFFFF18', display:'flex', justifyContent:'space-between', fontSize: 12, color:'#FFFFFF80', letterSpacing:'0.2em' }}>
         <span>Pod Ardor · Thu, Mar 14 · 14:32 PT</span>
         <span>The algorithm has done its part.</span>
       </div>
@@ -377,7 +377,7 @@ function GetReadyView({ tweaks }) {
             <div className="serif" style={{ fontSize: 96, lineHeight: 1, color:'var(--rust)', marginTop: 24, fontFeatureSettings:'"tnum"' }}>
               {popupSec}
             </div>
-            <div className="mono caps" style={{ fontSize: 10, color:'#FFFFFF80', letterSpacing:'0.16em', marginTop: 8 }}>
+            <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF80', letterSpacing:'0.16em', marginTop: 8 }}>
               seconds
             </div>
           </div>

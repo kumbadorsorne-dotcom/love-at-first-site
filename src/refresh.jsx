@@ -56,17 +56,17 @@ function RefreshView({ tweaks }) {
       {/* Top bar — one row */}
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', borderBottom:'1px solid var(--line-strong)', paddingBottom: 10, marginBottom: 12 }}>
         <div style={{ display:'flex', gap: 14, alignItems:'baseline' }}>
-          <span className="serif" style={{ fontSize: 20, fontStyle:'italic' }}>Love at First Site</span>
-          <span className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>Pod Ardor</span>
+          <span className="serif" style={{ fontSize: 24, fontStyle:'italic' }}>Love at First Site</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em' }}>Pod Ardor</span>
         </div>
         <div style={{ display:'flex', gap: 10, alignItems:'center' }}>
-          <span className="mono caps" style={{ fontSize: 11, color:'var(--cream)', background:'var(--rust)', padding:'4px 10px', letterSpacing:'0.18em', borderRadius: 2, fontWeight: 600 }}>Call 5 / 8 {'\u00b7'} Intermission</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'var(--cream)', background:'var(--rust)', padding:'4px 10px', letterSpacing:'0.18em', borderRadius: 2, fontWeight: 600 }}>Call 5 / 8 {'\u00b7'} Intermission</span>
           <div style={{ display:'flex', gap: 6 }}>
             {[...Array(8)].map((_,i) => (
               <div key={i} style={{ width: 22, height: 4, borderRadius: 2, background: i < 4 ? 'var(--ink-3)' : i === 4 ? 'var(--rust)' : 'var(--line-strong)' }}/>
             ))}
           </div>
-          <span style={{ display:'inline-flex', alignItems:'center', gap: 6, padding:'3px 10px', background:'var(--ink)', color:'var(--cream)', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.14em', textTransform:'uppercase' }}>
+          <span style={{ display:'inline-flex', alignItems:'center', gap: 6, padding:'3px 10px', background:'var(--ink)', color:'var(--cream)', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.14em', textTransform:'uppercase' }}>
             <span style={{ width: 6, height: 6, borderRadius: 99, background:'var(--rust)', animation:'pulse 1.2s infinite' }}/>
             Locked in
           </span>
@@ -76,10 +76,10 @@ function RefreshView({ tweaks }) {
       {/* Headline + timer — compact */}
       <div style={{ display:'grid', gridTemplateColumns:'1fr auto', gap: 20, alignItems:'center', marginBottom: 14 }}>
         <div>
-          <div className="serif" style={{ fontSize: 40, lineHeight: 0.95, letterSpacing:'-0.03em' }}>
+          <div className="serif" style={{ fontSize: 48, lineHeight: 0.95, letterSpacing:'-0.03em' }}>
             Halfway. <span style={{ fontStyle:'italic', color:'var(--rust)' }}>Drink water.</span>
           </div>
-          <div className="serif" style={{ fontSize: 13, fontStyle:'italic', color:'var(--ink-2)', marginTop: 4, lineHeight: 1.3 }}>
+          <div className="serif" style={{ fontSize: 12, fontStyle:'italic', color:'var(--ink-2)', marginTop: 4, lineHeight: 1.3 }}>
             Four opinions in twenty-eight minutes. Stretch. Four more to go.
           </div>
         </div>
@@ -94,7 +94,7 @@ function RefreshView({ tweaks }) {
             <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'Lato, sans-serif', fontSize: 14 }}>{fmtT(timeLeft)}</div>
           </div>
           <div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)' }}>Call 5 bell</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)' }}>Call 5 bell</div>
             <div className="serif" style={{ fontSize: 14, fontStyle:'italic' }}>Auto-resume</div>
           </div>
         </div>
@@ -109,8 +109,8 @@ function RefreshView({ tweaks }) {
           {/* Revealed so far — horizontal row, 4 compact cards */}
           <div>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 6 }}>
-              <span className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.16em' }}>Revealed early · people you've met</span>
-              <span className="mono" style={{ fontSize: 9, color:'var(--ink-3)' }}>{mutuals.length} mutual · {completed.length} done</span>
+              <span className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.16em' }}>Revealed early · people you've met</span>
+              <span className="mono" style={{ fontSize: 12, color:'var(--ink-3)' }}>{mutuals.length} mutual · {completed.length} done</span>
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 8 }}>
               {completed.map(p => {
@@ -121,14 +121,14 @@ function RefreshView({ tweaks }) {
                     <div style={{ position:'relative', width:'100%', aspectRatio:'4/5', overflow:'hidden', borderRadius: 2, border:'1px solid var(--line-strong)' }}>
                       <Silhouette seed={p.seed}/>
                     </div>
-                    <div className="mono caps" style={{ fontSize: 8, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 6 }}>
+                    <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 6 }}>
                       Call {p.idx}
                     </div>
-                    <div className="serif" style={{ fontSize: 16, lineHeight: 1, marginTop: 2 }}>
+                    <div className="serif" style={{ fontSize: 18, lineHeight: 1, marginTop: 2 }}>
                       {p.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 12 }}>, {p.age}</span>
                     </div>
-                    <div className="mono" style={{ fontSize: 8, color:'var(--ink-3)', marginTop: 2, letterSpacing:'0.06em', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{p.occ} · {p.city}</div>
-                    <div className="serif" style={{ fontSize: 11, fontStyle:'italic', color: note ? 'var(--ink)' : 'var(--ink-3)', lineHeight: 1.25, marginTop: 6, paddingTop: 6, borderTop:'1px dotted var(--line-strong)', display:'-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient:'vertical', overflow:'hidden' }}>
+                    <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', marginTop: 2, letterSpacing:'0.06em', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{p.occ} · {p.city}</div>
+                    <div className="serif" style={{ fontSize: 12, fontStyle:'italic', color: note ? 'var(--ink)' : 'var(--ink-3)', lineHeight: 1.25, marginTop: 6, paddingTop: 6, borderTop:'1px dotted var(--line-strong)', display:'-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient:'vertical', overflow:'hidden' }}>
                       {note ? `"${note}"` : '— no note —'}
                     </div>
                   </div>
@@ -140,8 +140,8 @@ function RefreshView({ tweaks }) {
           {/* Who's left — blurred, compact */}
           <div>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 6 }}>
-              <span className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.16em' }}>Still blurred · who's left</span>
-              <span className="mono" style={{ fontSize: 9, color:'var(--ink-3)' }}>{remaining.length} to go</span>
+              <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em' }}>Still blurred · who's left</span>
+              <span className="mono" style={{ fontSize: 12, color:'var(--ink-3)' }}>{remaining.length} to go</span>
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 8 }}>
               {remaining.map(p => (
@@ -152,9 +152,9 @@ function RefreshView({ tweaks }) {
                     </div>
                   </div>
                   <div>
-                    <div className="mono caps" style={{ fontSize: 8, color:'var(--rust)', letterSpacing:'0.14em' }}>Call {p.idx}</div>
-                    <div className="serif" style={{ fontSize: 13, lineHeight: 1, marginTop: 1 }}>
-                      {p.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 10 }}>, {p.age}</span>
+                    <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.14em' }}>Call {p.idx}</div>
+                    <div className="serif" style={{ fontSize: 12, lineHeight: 1, marginTop: 1 }}>
+                      {p.name}<span style={{ color:'var(--ink-3)', fontStyle:'italic', fontSize: 12 }}>, {p.age}</span>
                     </div>
                   </div>
                 </div>
@@ -164,8 +164,8 @@ function RefreshView({ tweaks }) {
 
           {/* Rotating popup — moved under "who's left" */}
           <div style={{ padding:'10px 12px', background:'var(--ink)', color:'var(--cream)', borderRadius: 2, border:'1px solid var(--ink)' }}>
-            <span className="caps mono" style={{ fontSize: 8, letterSpacing:'0.14em', color:'var(--paper-3)' }}>{popup.kicker}</span>
-            <div className="serif" style={{ fontSize: 13, fontStyle:'italic', lineHeight: 1.25, marginTop: 3 }}>
+            <span className="caps mono" style={{ fontSize: 12, letterSpacing:'0.14em', color:'var(--paper-3)' }}>{popup.kicker}</span>
+            <div className="serif" style={{ fontSize: 12, fontStyle:'italic', lineHeight: 1.25, marginTop: 3 }}>
               "{popup.q}"
             </div>
           </div>
@@ -175,21 +175,21 @@ function RefreshView({ tweaks }) {
         <div style={{ display:'flex', flexDirection:'column', gap: 10, minHeight: 0 }}>
           <div style={{ position:'relative', flex: 1, minHeight: 0, border:'1px solid var(--line-strong)', background:'var(--paper-2)', borderRadius: 2, overflow:'hidden' }}>
             <Silhouette seed={1}/>
-            <div style={{ position:'absolute', top: 8, left: 8, padding:'3px 7px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 8, letterSpacing:'0.12em', textTransform:'uppercase', borderRadius: 2 }}>Mirror</div>
+            <div style={{ position:'absolute', top: 8, left: 8, padding:'3px 7px', background:'var(--ink)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', borderRadius: 2 }}>Mirror</div>
             <div style={{ position:'absolute', bottom: 8, left: 8, right: 8, display:'flex', gap: 4, justifyContent:'center', flexWrap:'wrap' }}>
               {['lighting','audio','framing'].map(x => (
-                <div key={x} style={{ padding:'2px 7px', background:'#FFFFFFE0', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 7, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--ink)' }}>{x} ✓</div>
+                <div key={x} style={{ padding:'2px 7px', background:'#FFFFFFE0', borderRadius: 2, fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--ink)' }}>{x} ✓</div>
               ))}
             </div>
           </div>
 
           {/* Checklist — chip row */}
           <div style={{ padding:'8px 10px', border:'1px solid var(--line-strong)', borderRadius: 2, background:'var(--cream)' }}>
-            <div className="mono caps" style={{ fontSize: 8, color:'var(--ink-3)', letterSpacing:'0.16em', marginBottom: 5 }}>Set-Up Checklist, again</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em', marginBottom: 5 }}>Checklist, again</div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 5 }}>
               {checklist.map((it, i) => (
                 <div key={i} style={{ padding:'4px 4px', border:`1px solid ${it.ok ? 'var(--line-strong)' : 'var(--rust)'}`, background: it.ok ? 'transparent' : '#6B152010', borderRadius: 2, textAlign:'center' }}>
-                  <span className="mono caps" style={{ fontSize: 8, letterSpacing:'0.12em', color: it.ok ? 'var(--ink)' : 'var(--rust)' }}>
+                  <span className="mono caps" style={{ fontSize: 12, letterSpacing:'0.12em', color: it.ok ? 'var(--ink)' : 'var(--rust)' }}>
                     {it.ok ? '✓' : '!'} {it.label}
                   </span>
                 </div>

@@ -65,14 +65,14 @@ function ProfileContactDropdown({ p }) {
         style={{
           width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between',
           padding:'9px 12px', background:'var(--paper-2)', borderRadius: 2,
-          border:'1px solid var(--line-strong)', fontFamily:'Lato, sans-serif', fontSize: 11,
+          border:'1px solid var(--line-strong)', fontFamily:'Lato, sans-serif', fontSize: 12,
           color:'var(--ink)', textAlign:'left', cursor:'pointer'
         }}>
         <span style={{ display:'flex', alignItems:'center', gap: 10, minWidth: 0 }}>
-          <span className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.14em', flexShrink: 0 }}>{ch.icon}</span>
-          <span className="mono" style={{ fontSize: 11, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{ch.handle}</span>
+          <span className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.14em', flexShrink: 0 }}>{ch.icon}</span>
+          <span className="mono" style={{ fontSize: 12, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{ch.handle}</span>
         </span>
-        <span className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em', flexShrink: 0, marginLeft: 8 }}>
+        <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em', flexShrink: 0, marginLeft: 8 }}>
           {i+1}/{channels.length} ▾
         </span>
       </button>
@@ -92,9 +92,9 @@ function ProfileContactDropdown({ p }) {
                 borderBottom: idx === channels.length-1 ? 'none' : '1px dotted var(--line-strong)',
                 textAlign:'left', cursor:'pointer'
               }}>
-              <span className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.14em' }}>{c.icon}</span>
-              <span className="mono" style={{ fontSize: 11, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{c.handle}</span>
-              <span className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>{c.label}</span>
+              <span className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.14em' }}>{c.icon}</span>
+              <span className="mono" style={{ fontSize: 12, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{c.handle}</span>
+              <span className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em' }}>{c.label}</span>
             </button>
           ))}
         </div>
@@ -133,8 +133,8 @@ function ProfileView() {
     <div style={{ minHeight:'100vh', padding:'36px 48px 72px', maxWidth: 1280, margin:'0 auto' }}>
       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', borderBottom:'1px solid var(--line-strong)', paddingBottom: 18, marginBottom: 28 }}>
         <div>
-          <div className="mono caps" style={{ fontSize: 10, letterSpacing:'0.16em', color:'var(--ink-3)' }}>Your profile</div>
-          <div className="serif" style={{ fontSize: 56, lineHeight: 1, letterSpacing:'-0.02em', marginTop: 8 }}>
+          <div className="mono caps" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--ink-3)' }}>Your profile</div>
+          <div className="serif" style={{ fontSize: 48, lineHeight: 1, letterSpacing:'-0.02em', marginTop: 8 }}>
             Marie <span style={{ fontStyle:'italic' }}>Delacroix</span>
           </div>
         </div>
@@ -150,16 +150,16 @@ function ProfileView() {
           <div style={{ aspectRatio:'4/5', borderRadius: 2, overflow:'hidden', border:'1px solid var(--line-strong)' }}>
             <Silhouette seed={2}/>
           </div>
-          <div className="serif" style={{ fontSize: 30, lineHeight: 1 }}>29 · Brooklyn</div>
-          <div className="serif" style={{ fontSize: 20, fontStyle:'italic', color:'var(--ink-2)', lineHeight: 1.4 }}>
+          <div className="serif" style={{ fontSize: 32, lineHeight: 1 }}>29 · Brooklyn</div>
+          <div className="serif" style={{ fontSize: 24, fontStyle:'italic', color:'var(--ink-2)', lineHeight: 1.4 }}>
             "{bio}"
           </div>
           <div>
-            <div className="caps mono" style={{ fontSize: 9, letterSpacing:'0.16em', color:'var(--ink-3)', marginBottom: 10 }}>Your 15 variables</div>
+            <div className="caps mono" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--ink-3)', marginBottom: 10 }}>Your 15 variables</div>
             <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap: 0, border:'1px solid var(--line-strong)', borderRadius: 2, overflow:'hidden' }}>
               {traits.map(([k,v], i) => (
                 <div key={i} style={{ padding:'12px 14px', background:'var(--cream)', borderBottom: i < traits.length - 2 ? '1px solid var(--line)' : 'none', borderRight: i % 2 === 0 ? '1px solid var(--line)' : 'none' }}>
-                  <div className="caps mono" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>{k}</div>
+                  <div className="caps mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em' }}>{k}</div>
                   <div className="serif" style={{ fontSize: 18, marginTop: 3 }}>{v}</div>
                 </div>
               ))}
@@ -167,12 +167,12 @@ function ProfileView() {
           </div>
 
           <div style={{ padding:'16px 18px', border:'1px solid var(--line-strong)', borderRadius: 2 }}>
-            <div className="caps mono" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.16em' }}>Circuit history</div>
+            <div className="caps mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.16em' }}>Circuit history</div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 12, marginTop: 10 }}>
               {stats.map(([k,v], i) => (
                 <div key={i}>
-                  <div className="serif" style={{ fontSize: 30, lineHeight: 1 }}>{v}</div>
-                  <div className="caps mono" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 4 }}>{k}</div>
+                  <div className="serif" style={{ fontSize: 32, lineHeight: 1 }}>{v}</div>
+                  <div className="caps mono" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 4 }}>{k}</div>
                 </div>
               ))}
             </div>
@@ -183,12 +183,12 @@ function ProfileView() {
         <div>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', borderBottom:'1px solid var(--line-strong)', paddingBottom: 12, marginBottom: 20 }}>
             <div>
-              <div className="mono caps" style={{ fontSize: 10, letterSpacing:'0.16em', color:'var(--ink-3)' }}>The little archive</div>
-              <div className="serif" style={{ fontSize: 40, lineHeight: 1, marginTop: 6, letterSpacing:'-0.02em' }}>
+              <div className="mono caps" style={{ fontSize: 12, letterSpacing:'0.16em', color:'var(--ink-3)' }}>The little archive</div>
+              <div className="serif" style={{ fontSize: 48, lineHeight: 1, marginTop: 6, letterSpacing:'-0.02em' }}>
                 Your <span style={{ fontStyle:'italic', color:'var(--rust)' }}>{PROFILE_MATCHES.length}</span> mutual matches.
               </div>
             </div>
-            <div className="mono caps" style={{ fontSize: 9, letterSpacing:'0.14em', color:'var(--ink-3)' }}>by most recent</div>
+            <div className="mono caps" style={{ fontSize: 12, letterSpacing:'0.14em', color:'var(--ink-3)' }}>by most recent</div>
           </div>
 
           <div style={{ display:'flex', flexDirection:'column', gap: 18 }}>
@@ -208,42 +208,42 @@ function MatchRow({ m }) {
     <div style={{ border:'1px solid var(--line-strong)', borderRadius: 2, background:'var(--cream)', overflow:'hidden', display:'grid', gridTemplateColumns:'160px 1fr', gap: 0 }}>
       <div style={{ position:'relative' }}>
         <Silhouette seed={m.seed}/>
-        <div style={{ position:'absolute', top: 10, left: 10, padding:'3px 8px', background:'var(--rust)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 9, letterSpacing:'0.14em', textTransform:'uppercase', borderRadius: 2 }}>
+        <div style={{ position:'absolute', top: 10, left: 10, padding:'3px 8px', background:'var(--rust)', color:'var(--cream)', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.14em', textTransform:'uppercase', borderRadius: 2 }}>
           ♥ Mutual
         </div>
       </div>
       <div style={{ padding:'14px 18px 16px' }}>
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
           <div>
-            <div className="serif" style={{ fontSize: 26, lineHeight: 1 }}>
+            <div className="serif" style={{ fontSize: 24, lineHeight: 1 }}>
               {m.name}<span style={{ color:'var(--ink-3)' }}>, </span><span style={{ fontStyle:'italic', color:'var(--ink-3)' }}>{m.age}</span>
             </div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 4 }}>{m.occ} · {m.city}</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em', marginTop: 4 }}>{m.occ} · {m.city}</div>
           </div>
-          <div className="mono" style={{ fontSize: 10, color:'var(--ink-3)', fontStyle:'italic' }}>{m.pod} · {m.date}</div>
+          <div className="mono" style={{ fontSize: 12, color:'var(--ink-3)', fontStyle:'italic' }}>{m.pod} · {m.date}</div>
         </div>
 
-        <div className="serif" style={{ fontSize: 17, fontStyle:'italic', color:'var(--ink-2)', marginTop: 10, lineHeight: 1.3, borderLeft:'2px solid var(--rust)', paddingLeft: 10 }}>
+        <div className="serif" style={{ fontSize: 18, fontStyle:'italic', color:'var(--ink-2)', marginTop: 10, lineHeight: 1.3, borderLeft:'2px solid var(--rust)', paddingLeft: 10 }}>
           "{m.quote}"
         </div>
 
         <div style={{ marginTop: 12, display:'grid', gridTemplateColumns:'1.2fr 1fr', gap: 16, alignItems:'end' }}>
           <div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em' }}>You agreed on</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em' }}>You agreed on</div>
             <div style={{ display:'flex', flexWrap:'wrap', gap: 4, marginTop: 6 }}>
               {m.shared.slice(0,4).map((s,i) => {
                 const [field, value] = s.split(' · ');
-                return <span key={i} className="mono" style={{ fontSize: 10, padding:'3px 8px', border:'1px solid var(--line-strong)', borderRadius: 2 }}>{field} · <span style={{ color:'var(--ink-3)' }}>{value}</span></span>;
+                return <span key={i} className="mono" style={{ fontSize: 12, padding:'3px 8px', border:'1px solid var(--line-strong)', borderRadius: 2 }}>{field} · <span style={{ color:'var(--ink-3)' }}>{value}</span></span>;
               })}
             </div>
           </div>
           <div>
-            <div className="mono caps" style={{ fontSize: 9, color:'var(--ink-3)', letterSpacing:'0.14em', marginBottom: 6 }}>Contact released</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'var(--ink-3)', letterSpacing:'0.14em', marginBottom: 6 }}>Contact</div>
             <ProfileContactDropdown p={m}/>
             <button onClick={() => setProfileOpen(true)} style={{
               marginTop: 6, width:'100%', padding:'9px 12px',
               background:'var(--ink)', color:'var(--cream)',
-              fontFamily:'Lato, sans-serif', fontSize: 10, letterSpacing:'0.14em', textTransform:'uppercase',
+              fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.14em', textTransform:'uppercase',
               borderRadius: 2, display:'flex', justifyContent:'space-between', alignItems:'center'
             }}>
               <span>View full profile</span>
@@ -252,7 +252,7 @@ function MatchRow({ m }) {
           </div>
         </div>
 
-        <div className="mono caps" style={{ fontSize: 9, color:'var(--rust)', letterSpacing:'0.14em', marginTop: 12 }}>● {m.status}</div>
+        <div className="mono caps" style={{ fontSize: 12, color:'var(--rust)', letterSpacing:'0.14em', marginTop: 12 }}>● {m.status}</div>
       </div>
       {profileOpen && <FullProfilePopup p={m} onClose={() => setProfileOpen(false)}/>}
     </div>
@@ -260,7 +260,7 @@ function MatchRow({ m }) {
 }
 
 const btnSubP = {
-  padding:'9px 14px', fontFamily:'Lato, sans-serif', fontSize: 11, letterSpacing:'0.12em',
+  padding:'9px 14px', fontFamily:'Lato, sans-serif', fontSize: 12, letterSpacing:'0.12em',
   textTransform:'uppercase', border:'1px solid var(--line-strong)', borderRadius: 2, color:'var(--ink-2)'
 };
 
