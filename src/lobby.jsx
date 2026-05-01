@@ -785,7 +785,7 @@ function ManifestRotationCard({ candidates }) {
           <div ref={scrollRef} style={{ display:'flex', flexDirection:'column', gap: 6, flex: 1, minHeight: 0, overflowY:'auto', scrollbarWidth:'thin' }}>
             <div style={{ position:'relative', display:'flex', flexDirection:'column', gap: 6 }}>
               {/* Single column outline wrapping all matches on the right */}
-              <div style={{ position:'absolute', top: 0, bottom: 0, right: 4, width:'46%', border:'1px solid var(--rust)', borderRadius: 10, pointerEvents:'none', zIndex: 1 }}/>
+              <div style={{ position:'absolute', top: 0, bottom: 0, right: 0, left:'54%', border:'1px solid var(--rust)', borderRadius: 10, pointerEvents:'none', zIndex: 1 }}/>
             {(() => {
               const pairs = [];
               for (let i = 0; i < candidates.length; i += 2) {
