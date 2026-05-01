@@ -770,7 +770,24 @@ function ManifestRotationCard({ candidates }) {
         <>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 8 }}>
             <SmallCap>{joinedCount} / 12 joined</SmallCap>
-            <SmallCap style={{ color:'#FFFFFF' }}>In progress</SmallCap>
+            <SmallCap>The Round</SmallCap>
+          </div>
+          {/* Column header: visually claim the right side as YOUR DATES */}
+          <div style={{ display:'flex', alignItems:'center', marginBottom: 8 }}>
+            <div style={{ flex: 1 }}/>
+            <div style={{ flex: 1, display:'flex', alignItems:'center', gap: 8 }}>
+              <div style={{ flex: 1, height: 1, background:'var(--rust)', opacity: 0.5 }}/>
+              <span className="mono caps" style={{
+                fontSize: 12, letterSpacing:'0.16em',
+                color:'var(--cream)', background:'var(--rust)',
+                padding:'4px 10px', borderRadius: 99, fontWeight: 700,
+                display:'inline-flex', alignItems:'center', gap: 6,
+                boxShadow:'0 0 0 3px #80012033'
+              }}>
+                {'↓'} Your dates
+              </span>
+              <div style={{ flex: 1, height: 1, background:'var(--rust)', opacity: 0.5 }}/>
+            </div>
           </div>
           <div ref={scrollRef} style={{ display:'flex', flexDirection:'column', gap: 6, flex: 1, minHeight: 0, overflowY:'auto', scrollbarWidth:'thin' }}>
             {(() => {
