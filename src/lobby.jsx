@@ -825,8 +825,8 @@ function ManifestRotationCard({ candidates }) {
 
                       <div className="mono caps" style={{ fontSize: 24, color:'#800120', letterSpacing:'0.08em' }}>&amp;</div>
 
-                      {/* Person B */}
-                      <div style={{ display:'flex', alignItems:'center', gap: 8, flex: 1, justifyContent:'flex-end' }}>
+                      {/* Person B — outlined as the matched-dates column */}
+                      <div style={{ display:'flex', alignItems:'center', gap: 8, flex: 1, justifyContent:'flex-end', border:'1px solid var(--rust)', borderRadius: 10, padding:'6px 8px', background:'#80012010' }}>
                         <div style={{ textAlign:'right' }}>
                           <div className="serif" style={{ fontSize: 14, lineHeight: 1, color:'#FFFFFF' }}>
                             {b?.joined ? b.name : '...'}
