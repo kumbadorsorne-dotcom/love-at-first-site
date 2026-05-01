@@ -783,6 +783,9 @@ function ManifestRotationCard({ candidates }) {
             Your dates
           </span>
           <div ref={scrollRef} style={{ display:'flex', flexDirection:'column', gap: 6, flex: 1, minHeight: 0, overflowY:'auto', scrollbarWidth:'thin' }}>
+            <div style={{ position:'relative', display:'flex', flexDirection:'column', gap: 6 }}>
+              {/* Single column outline wrapping all matches on the right */}
+              <div style={{ position:'absolute', top: 0, bottom: 0, right: 4, width:'46%', border:'1px solid var(--rust)', borderRadius: 10, pointerEvents:'none', zIndex: 1 }}/>
             {(() => {
               const pairs = [];
               for (let i = 0; i < candidates.length; i += 2) {
@@ -825,8 +828,8 @@ function ManifestRotationCard({ candidates }) {
 
                       <div className="mono caps" style={{ fontSize: 24, color:'#800120', letterSpacing:'0.08em' }}>&amp;</div>
 
-                      {/* Person B — outlined as the matched-dates column */}
-                      <div style={{ display:'flex', alignItems:'center', gap: 8, flex: 1, justifyContent:'flex-end', border:'1px solid var(--rust)', borderRadius: 10, padding:'6px 8px', background:'#80012010' }}>
+                      {/* Person B */}
+                      <div style={{ display:'flex', alignItems:'center', gap: 8, flex: 1, justifyContent:'flex-end' }}>
                         <div style={{ textAlign:'right' }}>
                           <div className="serif" style={{ fontSize: 14, lineHeight: 1, color:'#FFFFFF' }}>
                             {b?.joined ? b.name : '...'}
@@ -846,6 +849,7 @@ function ManifestRotationCard({ candidates }) {
                 );
               });
             })()}
+            </div>
             {/* Reveal */}
             <div style={{ padding:'8px 12px', background:'#1A1A1A', borderRadius: 10, display:'flex', alignItems:'center', justifyContent:'center', gap: 8 }}>
               <span className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.12em' }}>{'\u2609'} Reveal</span>
