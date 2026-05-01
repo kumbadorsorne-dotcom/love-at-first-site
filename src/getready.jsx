@@ -323,16 +323,14 @@ function GetReadyView({ tweaks }) {
 
           {/* Up next — remaining calls */}
           <div style={{ border:'1px solid #FFFFFF20', borderRadius: 2, padding:'10px 12px', background:'#111111' }}>
-            <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFFB0', letterSpacing:'0.14em', marginBottom: 8 }}>Up next {'\u00b7'} calls 2-8</div>
+            <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFFB0', letterSpacing:'0.14em', marginBottom: 8 }}>Up next {'\u00b7'} calls 2-6</div>
             <div style={{ display:'flex', gap: 8, overflowX:'auto' }}>
               {[
-                { name:'Priya',   age:28, seed:6 },
-                { name:'Wren',    age:33, seed:5 },
-                { name:'Desmond', age:30, seed:7 },
-                { name:'Ilse',    age:27, seed:8 },
-                { name:'Tom\u00e1s',   age:32, seed:9 },
-                { name:'Harper',  age:29, seed:2 },
-                { name:'Nadia',   age:34, seed:3 },
+                { name:'Wren',    age:33, seed:6 },
+                { name:'Desmond', age:30, seed:8 },
+                { name:'Tom\u00e1s',   age:32, seed:10 },
+                { name:'Ezra',    age:31, seed:12 },
+                { name:'Soren',   age:29, seed:14 },
               ].map((p, i) => (
                 <div key={i} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap: 4, flexShrink: 0 }}>
                   <div style={{ width: 36, height: 36, borderRadius: 99, overflow:'hidden', border:'1px solid #FFFFFF30', position:'relative' }}>

@@ -100,8 +100,8 @@ function RoundView({ tweaks }) {
   const suggestedPrompts = [
     { kicker: 'Shared: Jazz', q: "Who's the first jazz musician you ever loved?" },
     { kicker: 'Shared: Analog film', q: "What's the last roll of film you shot and never developed?" },
-    { kicker: 'Divergent: Cats vs Dogs', q: 'Convince me, in under a minute, on the animal question.' },
-    { kicker: 'Soft opener', q: "What's a small thing in your apartment that you're unreasonably proud of?" },
+    { kicker: 'Shared: Hiking', q: "What's a trail that's stayed with you long after you finished it?" },
+    { kicker: 'Shared: Sci-fi novels', q: "Last sci-fi book you couldn't put down — and what hooked you?" },
   ];
 
   return (
@@ -246,7 +246,7 @@ function RoundView({ tweaks }) {
             {/* Suggested prompts */}
             <div style={{ padding:'12px 20px', border:'1px solid #FFFFFF1A', borderRadius: 10, background:'#1A1A1A', color:'#FFFFFF', flex: 1, display:'flex', flexDirection:'column', minHeight: 0 }}>
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 12 }}>
-                <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.12em' }}>Suggested Ice Breakers</div>
+                <div className="mono caps" style={{ fontSize: 12, color:'#FFFFFF', letterSpacing:'0.12em' }}>Shared Interest Icebreakers</div>
               </div>
               <div style={{ display:'flex', flexDirection:'column', gap: 5, flex: 1, minHeight: 0, overflow:'auto' }}>
                 {suggestedPrompts.map((p, i) => {
