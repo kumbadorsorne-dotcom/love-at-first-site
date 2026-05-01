@@ -804,7 +804,7 @@ function ManifestRotationCard({ candidates }) {
                   }}>
                     <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: 8 }}>
                       <span className="mono caps" style={{ fontSize: 12, color: a?.you ? '#800120' : '#FFFFFF', letterSpacing:'0.12em', fontWeight: 700 }}>Date {pi + 1}</span>
-                      <span className="mono caps" style={{ fontSize: 12, color: bothJoined ? '#800120' : '#888888', letterSpacing:'0.12em' }}>
+                      <span className="mono" style={{ fontSize: 10, color: bothJoined ? '#800120' : '#888888', letterSpacing:'0.08em' }}>
                         {bothJoined ? '\u2665 ' + ['first','second','third','fourth','fifth','sixth'][pi] + ' date' : '5:00 min'}
                       </span>
                     </div>
