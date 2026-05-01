@@ -765,30 +765,23 @@ function ManifestRotationCard({ candidates }) {
   }, [joinedCount]);
 
   return (
-    <div style={{ padding:'12px 20px', border:'1px solid #FFFFFF20', borderRadius: 10, background:'#0A0A0A', color:'#FFFFFF', height:'100%', display:'flex', flexDirection:'column', minHeight: 0 }}>
+    <div style={{ position:'relative', padding:'12px 20px', border:'1px solid #FFFFFF20', borderRadius: 10, background:'#0A0A0A', color:'#FFFFFF', height:'100%', display:'flex', flexDirection:'column', minHeight: 0 }}>
       {candidates && (
         <>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline', marginBottom: 8 }}>
             <SmallCap>{joinedCount} / 12 joined</SmallCap>
-            <SmallCap>The Round</SmallCap>
           </div>
-          {/* Column header: visually claim the right side as YOUR DATES */}
-          <div style={{ display:'flex', alignItems:'center', marginBottom: 8 }}>
-            <div style={{ flex: 1 }}/>
-            <div style={{ flex: 1, display:'flex', alignItems:'center', gap: 8 }}>
-              <div style={{ flex: 1, height: 1, background:'var(--rust)', opacity: 0.5 }}/>
-              <span className="mono caps" style={{
-                fontSize: 12, letterSpacing:'0.16em',
-                color:'var(--cream)', background:'var(--rust)',
-                padding:'4px 10px', borderRadius: 99, fontWeight: 700,
-                display:'inline-flex', alignItems:'center', gap: 6,
-                boxShadow:'0 0 0 3px #80012033'
-              }}>
-                {'↓'} Your dates
-              </span>
-              <div style={{ flex: 1, height: 1, background:'var(--rust)', opacity: 0.5 }}/>
-            </div>
-          </div>
+          {/* Overlay badge: marks the right column as YOUR DATES */}
+          <span className="mono caps" style={{
+            position:'absolute', top: 10, right: '25%', transform:'translateX(50%)',
+            zIndex: 5,
+            fontSize: 12, letterSpacing:'0.16em',
+            color:'var(--cream)', background:'var(--rust)',
+            padding:'4px 12px', borderRadius: 99, fontWeight: 700,
+            boxShadow:'0 4px 14px #00000080, 0 0 0 3px #80012033'
+          }}>
+            Your dates
+          </span>
           <div ref={scrollRef} style={{ display:'flex', flexDirection:'column', gap: 6, flex: 1, minHeight: 0, overflowY:'auto', scrollbarWidth:'thin' }}>
             {(() => {
               const pairs = [];
