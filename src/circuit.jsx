@@ -98,10 +98,10 @@ function RoundView({ tweaks }) {
   const matched = theirInterests.filter(x => yourInterests.includes(x));
 
   const suggestedPrompts = [
-    { kicker: 'Shared: Jazz', q: "Who's the first jazz musician you ever loved?" },
-    { kicker: 'Shared: Analog film', q: "What's the last roll of film you shot and never developed?" },
-    { kicker: 'Shared: Hiking', q: "What's a trail that's stayed with you long after you finished it?" },
-    { kicker: 'Shared: Sci-fi novels', q: "Last sci-fi book you couldn't put down — and what hooked you?" },
+    { kicker: 'Jazz', q: "Who's the first jazz musician you ever loved?" },
+    { kicker: 'Analog film', q: "What's the last roll of film you shot and never developed?" },
+    { kicker: 'Hiking', q: "What's a trail that's stayed with you long after you finished it?" },
+    { kicker: 'Sci-fi novels', q: "Last sci-fi book you couldn't put down — and what hooked you?" },
   ];
 
   return (
